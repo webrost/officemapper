@@ -1,0 +1,489 @@
+﻿
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.canvas
+{
+    vertical-align:top;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.mapHeader
+{
+    display:block;
+    background-color:#00a380;
+    vertical-align:middle;
+    text-align:center;
+    height:40px;
+    text-align: left;
+}
+
+.mapLeft {
+    display:inline-block;
+    width:70%;
+    background-color:#ffffff;
+    height:90%;
+    overflow:hidden;
+}
+
+.mapRight{
+    display:inline-block;
+    width:20%;
+    background-color:#ffffff;
+    vertical-align:top;
+}
+
+.mapClass
+{
+    background-color: #ffffff;
+    border-width: 0px;
+    border-style: solid;
+    overflow: hidden;
+    width: 80%;
+    margin: 10px;
+    position: fixed;
+    top: 35px;
+    left: 300px;
+    border-radius: 3px;
+    border-color: #000;
+    z-index:1020;
+}
+
+.searchButton
+{
+    display:inline-block;
+    padding:10px;
+    color:#ffffff;
+    font-size:14px;
+    text-align:center;
+    margin:10px;
+    background-color:#15a948;
+}
+
+.mapImage
+{
+    overflow-x:hidden;
+    overflow-y:hidden;
+    height:100%;
+}
+
+#svgUTN
+{
+    width:100%;
+    height:100%;
+    position:relative;
+    top:0;
+}
+
+.menuLevel1
+{
+    display:inline-block;
+    width:300px;
+    background-color:#ffffff;
+    color:#00a380;
+    font-size:16px;
+    text-align:left;
+    padding:4px;
+    margin:1px;
+    cursor:pointer;
+    border-width: 1px;
+    border-color: #00a380;
+    border-radius: 3px;
+    border-style: solid;
+}
+
+.menuLevel1:hover
+{
+    background-color:#00a380;
+    color:#ffffff;
+}
+
+.menuLevel
+{
+    display:inline-block;
+    width:300px;
+    background-color:#ffffff;
+    color:#00a380;
+    font-size:16px;
+    text-align:left;
+    padding:4px;
+    margin:1px;
+    cursor:pointer;
+    border-width: 1px;
+    border-color: #00a380;
+    border-radius: 3px;
+    border-style: solid;
+}
+
+.menuLevel:hover
+{
+    background-color:#00a380;
+    color:#ffffff;
+}
+
+.menuLevel2
+{
+    background-color:#00a380;
+    color:#ffffff;
+    font-size:13px;
+}
+
+.menuLevel3
+{
+    background-color:#00b890;
+    color:#ffffff;
+    font-size:12px;
+}
+
+.menuLevel4
+{
+    background-color:#00d7a8;
+    color:#ffffff;
+    font-size:11px;
+}
+
+.menuLevel5
+{
+    background-color:#00eeba;
+    color:#ffffff;
+    font-size:10px;
+}
+
+.img-circle { 
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  border-radius: 50%;
+  background:url(/Resources/anisimova.JPG) 50% 50% no-repeat;
+}
+
+.img-back{
+      background: url(/Resources/anisimova.JPG) 50% 50% no-repeat; /* 50% 50% centers image in div */
+}
+
+.uPost
+{
+    color: #001100;
+    font-weight: bold;
+}
+.uName
+{
+    font-weight:bold;
+    color:#454545;
+}
+.uPhones
+{
+
+}
+.uEmail
+{
+
+}
+
+.fillHeight { 
+    min-height:400px;
+    height: 400px;
+    overflow:scroll;
+}
+
+#detailInfo{
+    background-color:rgba(255, 255, 255, 0.9);
+    color: #000;
+    border-width: 2px;
+    border-style: solid;
+    border-color:#00a380;
+    border-left-width: 15px;
+    padding:2px;
+}
+
+.searchText
+{
+    color: #fff;
+    font-size:medium;
+    padding-top: 5px;
+}
+
+.phoneNumber{
+    display:inline-block;
+    color:#9bf5e1;
+}
+
+.currentUser{
+    display:inline-block;
+    color:#000;
+}
+
+#birthdayButton{
+    position: fixed;
+    top: 0px;
+    z-index:1090;
+    padding:5px;
+    width:200px;
+    text-align:center;
+    border-radius: 10px;
+    border-color:#fff;
+    border-width:2px;
+    border-style:solid;
+    color:#fff;
+    /*background-image:url(../Resources/bd.png);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center;*/   
+    cursor:pointer;
+}
+
+#modalDialogBack{
+    display:none;
+    width: 100%;
+    height:100%;
+    background-color: rgba(255,255,255,0.5);
+    z-index:9999;
+    position:fixed;
+    top: 0px;
+    left:0px;
+    text-align:center;
+    vertical-align:central;
+}
+
+#modalDialog{
+    display:block;
+    /*z-index:10000;*/
+    background-color:#00b890;
+    width: 30%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: auto;
+}
+
+.closeButton
+{
+    vertical-align:central;
+    text-align:center;
+    margin-top:10px;
+    color:#ffffff;
+    right:0px;
+    width:40px;
+    height:40px;
+    background-color:#00a380;
+    margin-left: auto;
+    margin-right: 0px;
+    padding-top:8px;
+    cursor:pointer;
+}
+
+#statisticPanel
+{
+    display:block;
+    margin:10px;
+    padding:10px;
+    color:#fff;
+    background-color:silver;
+    position:fixed;
+    z-index:1200;
+    right:50px;
+    bottom:0px;
+}
+
+#firstLevel
+{
+    position: fixed;
+    top:40px;
+    z-index:9999;
+}
+
+#menuPool
+{
+    margin-top:75px;
+}
+
+.iconmap
+{
+    width:20px;
+    margin-right:10px;
+}
+
+.filiaTabs
+{
+    position: fixed;
+    top:75px;
+    z-index:9999;
+    display: inline-block;
+    background-color:#fff;
+    color:rgb(255, 255, 255);
+}
+
+.filiaTab
+{
+    display: inline-block;
+    background-color:#00a380;
+    margin:2px;
+    padding-left:3px;
+    padding-right:3px;
+    border-color:#00a380;
+    border-width:1px;
+    border-style:solid;
+    cursor:pointer;
+    width:70px;
+    text-align:center;
+    border-radius:2px;
+}
+
+.navigationPosition
+{
+    display: inline-block;
+    position: fixed;
+    top:40px;
+    z-index:9999;
+    background-color:#fff;
+    left: 305px;
+    padding:5px;
+    margin:2px;
+    border-color:#00a380;
+    border-width:1px;
+    border-style:solid;
+    border-radius:2px;
+}
+
+#testMenu
+{
+        display: inline-block;
+    position: fixed;
+    top:80px;
+    z-index:9999;
+    background-color:#fff;
+    left: 305px;
+    padding:5px;
+    margin:2px;
+    border-color:#00a380;
+    border-width:1px;
+    border-style:solid;
+    border-radius:2px;
+}
+
+.selectedFilia{
+    background-color:#767676;
+}
+
+
+/*----------------------------------------------------------*/
+/* контейнер просто содержит узлы.
+ Узел сам будет отвечать за свой отступ */
+.Container {
+        padding: 0;
+        margin: 0;
+}
+
+.Container li {
+        list-style-type: none; /* убрать кружочки/точечки */
+}
+/* узел отодвинут от левой стенки контейнера на 18px
+    благодаря этим отступам вложенные узлы формируют иерархию
+ */
+.Node {
+    margin-left: 18px;
+    zoom: 1; /* спецсвойство против багов IE6,7. Ставит hasLayout */
+}
+
+/* Корневой узел от родительского контейнера не отодвинут. 
+   Ему же не надо демонстрировать отступом, чей он сын.
+   Это правило идет после .Node, поэтому имеет более высокий приоритет 
+   Так что class="Node IsRoot" дает margin-left:0
+*/ 
+.IsRoot {
+    margin-left: 0;
+}
+/* иконка скрытого/раскрытого поддерева или листа
+    сами иконки идут дальше, здесь общие свойства
+ */
+.Expand {
+    width: 18px;
+    height: 18px;
+    /* принцип двухколоночной верстки. */
+    /* float:left и width дива Expand + margin-left дива Content */
+    float: left; 
+}
+
+/* содержание (заголовок) узла */
+ .Content {
+    /* чтобы не налезать на Expand */
+    margin-left:18px;
+    /* высота заголовка - как минимум равна Expand 
+        Т.е правая колонка всегда выше или равна левой.
+        Иначе нижний float будет пытаться разместиться на получившейся ступеньке
+    */    
+    min-height: 18px; 
+}
+
+ /* все правила после * html выполняет только IE6 */
+* html .Content {
+    height: 18px; /* аналог min-height для IE6 */
+}
+/* открытое поддерево */
+.ExpandOpen .Expand {  
+    background-image: url(/Resources/expand_minus.gif);  
+}
+
+/* закрытое поддерево */
+.ExpandClosed .Expand {
+    background-image: url(/Resources/expand_plus.gif);
+}
+
+/* лист */
+.ExpandLeaf .Expand {
+    background-image: url(/Resources/expand_leaf.gif);
+}
+
+.Node {
+    margin-left: 18px;
+    zoom: 1;
+    /* линия слева образуется повторяющимся фоновым рисунком */
+    background-image : url(/Resources/i.gif);
+    background-position : top left;
+    background-repeat : repeat-y;
+}
+.ExpandOpen .Container {
+	display: block;
+}
+
+.ExpandClosed .Container {
+	display: none;
+}
+
+.ExpandOpen .Expand, .ExpandClosed .Expand {
+	cursor: pointer; /* иконки скрытия-раскрытия */
+}
+
+.ExpandLeaf .Expand {
+	cursor: auto; /* листовой узел */
+}
+
+

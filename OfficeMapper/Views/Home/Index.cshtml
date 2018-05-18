@@ -1,0 +1,986 @@
+﻿@{
+    ViewBag.Title = "OfficeMapper";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<nav class="navbar-fixed-top">
+    <div class="col-sm-12 mapHeader">
+        <div class="searchText">
+            Пошук <input type="text" id="inputSearchText" class="input-sm" />
+            <div class="currentUser" id="currentUser"></div>
+            <div class="phoneNumber" id="currentEmail"></div>
+            <div class="phoneNumber" id="currentPhone"></div>
+            <div class="btn btn-default" id="editPhone">Править</div>
+        </div>        
+        <div class="nav navbar-nav navbar-right">
+            @*<div id="birthDayButton" class="btn btn-success">
+                    Дні народження
+                </div>*@
+        </div>
+    </div>
+</nav>
+<div id="birthdayButton">Немає іменинників</div>
+<div id="statisticPanel">
+    <div id="statisticPanel1"></div>
+    <div id="statisticPanel2"></div>
+</div>
+<div class="row mapHeader"></div>
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            <div id="navigationPanel" class="mapRight"></div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div id="mainMap" class="mapRight">
+            <div class="mapClass">
+                <img src="/api/map/senator.svg" alt="Senator" id="svgUTN">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalDialogBack">
+    <div id="modalDialog">
+        <div class="closeButton" id="closeDialogButton">X</div>
+        <div id="viewData">
+            
+        </div>
+    </div>
+</div>
+<div id="detailInfo" style="visibility:hidden"></div>
+
+<script type="text/javascript">
+
+        HTMLElement.prototype.alpha = function (a) {
+            current_color = getComputedStyle(this).getPropertyValue("background-color");
+            match = /rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*\d+[\.\d+]*)*\)/g.exec(current_color)
+            a = a > 1 ? (a / 100) : a;
+            this.style.backgroundColor = "rgba(" + [match[1], match[2], match[3], a].join(',') + ")";
+        }
+</script>
+<script type="text/javascript">
+        var structureURL = "/api/structure";
+        var userURL = "/api/users";
+        var singleuserURL = "/api/user/";
+        var departURL = "/api/department/";
+        var birthdayURL = "/api/birthdays";
+        var searchURL = "/api/search/";
+        var detailedUserInfoURL = "/api/userinfo/";
+        var currentUserURL = "/api/getCurrentUser";
+        var saveUserURL = "/api/saveCurrentUser";
+        var prefix = "dep";
+        var prefixUser = "user";
+        var firstLevelText = "Повернутися";
+        var selectedUserColor = "#f06";
+        var unselectedUserColor = "#ffffff";
+        var callFrom = "";
+        var currentFilia = 1;
+        var currentFunction = 0;
+        var currentFunctionName = "";
+        var selectedEmployees = 0;
+
+        ///---Загрузка карты
+        function LoadSVG() {
+            jQuery('#svgUTN').each(function () {
+                var $img = jQuery(this);
+                var imgID = $img.attr('id');
+                var imgClass = $img.attr('class');
+                var imgURL = $img.attr('src');
+                $.when(
+                jQuery.get(imgURL, function (data) {
+                    // Get the SVG tag, ignore the rest
+                    var $svg = jQuery(data).find('svg');
+
+                    // Add replaced image's ID to the new SVG
+                    if (typeof imgID !== 'undefined') {
+                        $svg = $svg.attr('id', imgID);
+                    }
+                    // Add replaced image's classes to the new SVG
+                    if (typeof imgClass !== 'undefined') {
+                        $svg = $svg.attr('class', imgClass + ' replaced-svg');
+                    }
+
+                    // Remove any invalid XML tags as per http://validator.w3.org
+                    $svg = $svg.removeAttr('xmlns:a');
+
+                    // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+                    if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                        $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+                    }
+
+                    // Replace image with new SVG
+                    $img.replaceWith($svg);
+
+
+                    ////-----Ховер и клик на Департаменты
+                    //$.ajax({
+                    //    dataType: "json",
+                    //    url: structureURL,
+                    //    success: function (data) {
+                    //        $.each(data, function (key, value) {
+                    //            ///---Проверяю существует ли DIV на карте и закрепляю за ним обработчик hover
+                    //            if ($('[id^=' + prefix + value.Code + '-]').length > 0) {
+                    //                $('[id^=' + prefix + value.Code + '-]').each(function (key1, value1) {
+                    //                    $("#" + value1.id).hover(function () {
+                    //                        SelectObject(prefix + value.Code);
+                    //                        //FillDepartment(value.Code);
+                    //                    }, function () {
+                    //                        UnselectObject(prefix + value.Code);
+                    //                        //FillStructure();
+                    //                    });
+                    //                });
+
+                    //                $('[id^=' + prefix + value.Code + '-]').each(function (key1, value1) {
+                    //                    $("#" + value1.id).click(function () {
+                    //                        FillDepartment(value.Code);
+                    //                    });
+                    //                });
+                    //            }
+                    //        });
+                    //    },
+                    //    error: function (err) {
+                    //        var x = err;
+                    //    }
+                    //});
+
+
+                    ///------Ховер и клик на Пользователей
+                    //$.ajax({
+                    //    dataType: "json",
+                    //    url: userURL,
+                    //    success: function (data) {
+                    //        $.each(data, function (key, value) {
+                    //            ///---Проверяю существует ли USER на карте и закрепляю за ним обработчик hover
+                    //            if ($('#' + prefixUser + value.Code).length > 0) {
+                    //                $('#' + prefixUser + value.Code).each(function (key1, value1) {
+
+                    //                    ///--Отработка на ховер
+                    //                    $("#" + value1.id).hover(function () {
+                    //                        SelectUser(prefixUser + value.Code);
+                    //                    }, function () {
+                    //                        UnselectUser(prefixUser + value.Code);
+                    //                    });
+
+                    //                    //--Отработка на нажатие мыши
+                    //                    $("#" + value1.id).click(function () {
+                    //                        FillUser(value.Code);
+                    //                    });
+                    //                });
+                    //            }
+                    //        })
+                    //    },
+                    //    error: function (err) {
+                    //    }
+                    //});
+                }, 'xml')
+                    ).then(function (data, textStatus, jqXHR) {
+
+                        ///---Подложка
+                        ///$("#image32216").hide();
+
+                        ///---Департаменты
+                        if ($("[id^='dep']").length > 0) {
+                            $("[id^='dep']").each(function (key, value) {
+                                $("#"+value.id).hide();
+                            });
+                        }
+                });
+
+            });
+
+
+
+            ////----Перемещение карты
+            //$(".mapClass").mousedown(function (e) {
+            //    var startX = e.offsetX;
+            //    var startY = e.offsetY;
+            //    var deltaX = 0;
+            //    var deltaY = 0;
+            //    document.getElementById('svgUTN').style.cursor = "pointer";
+
+            //    function moveAt(deltaX, deltaY) {
+            //        var newLeft = document.getElementById('svgUTN').style.left.includes("px")
+            //            ? parseInt(document.getElementById('svgUTN').style.left.replace("px", ""))
+            //            : document.getElementById('svgUTN').style.left == ""
+            //                ? 0
+            //                : parseInt(document.getElementById('svgUTN').style.left);
+            //        var newTop = document.getElementById('svgUTN').style.left.includes("px")
+            //            ? parseInt(document.getElementById('svgUTN').style.left.replace("px", ""))
+            //            : document.getElementById('svgUTN').style.left == ""
+            //                ? 0
+            //                : parseInt(document.getElementById('svgUTN').style.left);
+            //        newLeft = newLeft + deltaX;
+            //        newTop = newTop + deltaY;
+            //        document.getElementById('svgUTN').style.left = newLeft +'px';
+            //        document.getElementById('svgUTN').style.top = newTop + 'px';
+            //    }
+
+            //    // перемещать по экрану
+            //    document.onmousemove = function (e) {
+            //        deltaX = e.offsetX - startX;
+            //        deltaY = e.offsetY - startY;
+            //    }
+
+            //    // отследить окончание переноса
+            //    document.getElementById('svgUTN').onmouseup = function () {
+            //        document.onmousemove = null;
+            //        document.getElementById('svgUTN').onmouseup = null;
+            //        moveAt(deltaX, deltaY);
+            //        document.getElementById('svgUTN').style.cursor = "default";
+
+            //    }
+            //});
+        }
+
+        ///---Заполнение начальной структуры
+        function FillStructure() {
+            $("#navigationPanel").empty();
+            $.ajax({
+                dataType: "json",
+                url: structureURL,
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        ///---Добавляю пукт структуры
+                        $("#navigationPanel").append("<div class='menuLevel1' id='navigation" + value.Code + "'>" + value.Code + " " + value.Name + "</div>");
+
+                        ///---Прикрепляю ему обработчик
+                        $("#navigation" + value.Code).hover(function () {
+                            SelectObject(prefix + value.Code);
+                        }, function () {
+                            UnselectObject(prefix + value.Code);
+                        });
+
+                        ///---Прикрепляю ему обработчик click
+                        $("#navigation" + value.Code).click(function () {
+                            FillDepartment(value.Code, value.Name);
+                            UnselectObject(prefix + value.Code);
+                        });
+
+                        UnselectAllUsers();
+                    });
+
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Заполняет навигационную панель выбранного департамента
+        function FillDepartment(code, name) {
+            currentFunction = code;
+            currentFunctionName = name;
+            DrawMenuHeader();
+            SelectFilial(currentFilia);
+            FillDepartmentFilial(code, currentFilia);
+        }
+
+        function DrawMenuHeader()
+        {
+            $("#navigationPanel").empty();
+            $("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>"
+                + "<img src='/Resources/backicon.png' class='iconmap'>"
+                + firstLevelText
+                + "</div>"
+                + "<div class='filiaTabs'>"
+                + "<span class='filiaTab selectedFilia' id='filialTab1' onClick='SelectFilial(1)'>АУ</span>"
+                + "<span class='filiaTab'  id='filialTab2' onClick='SelectFilial(2)'>Дружба</span>"
+                + "<span class='filiaTab'  id='filialTab3' onClick='SelectFilial(3)'>ПМН</span>"
+                + "<span class='filiaTab'  id='filialTab4' onClick='SelectFilial(4)'>ПДМН</span>"
+                + "</div>");
+
+            $("#navigationPanel").append(
+                '<div id="testMenu"></div>'
+                );
+
+            $("#navigationPanel").append("<div class='navigationPosition'>" + currentFunctionName + "("
+                + "<span id='selectedEmployees'></span>"
+                + ")</div>");
+
+            $("#firstLevel").click(function () {
+                FillStructure();
+            });
+            $("#navigationPanel").append("<div class='menuPool' id='menuPool' />");
+        }
+
+        function DrawTree(currId, range)
+        {
+            
+            $.ajax({
+                dataType: "json",
+                url: "/api/dt/2",
+                success: function (data) {
+                    ///---Build structure
+                    $.each(data, function (key, value) {
+                        var x = value;
+                        $("#testMenu").append('<ul class="Container">'
+                    + '<li class="Node IsRoot ExpandOpen">'
+                    + '<div class="Expand"></div>'
+                    + '<div class="Content">' + value.Name + '</div>'
+                    + '<ul class="Container">'
+                    + '</ul>'
+                    + '</li>'
+                    + '</ul>');
+                    });
+                },
+                error: function () {
+
+                }
+            });
+        }
+
+        ///---Заполняет структуру указанного филиала
+        function FillDepartmentFilial(code, filialCode)
+        {
+            $.ajax({
+                dataType: "json",
+                url: "/api/dt/2",
+                success: function(data)
+                {
+                    ///---Build structure
+                    $.each(data, function (key, value) {
+                        var x = value;
+                        $("#testMenu").append('<ul class="Container">'
+                    + '<li class="Node IsRoot ExpandOpen">'
+                    + '<div class="Expand"></div>'
+                    + '<div class="Content">'+value.Name+'</div>'
+                    + '<ul class="Container">'
+                    + '</ul>'
+                    + '</li>'
+                    + '</ul>');
+                    });
+                    //'<ul class="Container">'
+                    //+ '<li class="Node IsRoot ExpandOpen">'
+                    //+ '<div class="Expand"></div>'
+                    //+ '<div class="Content">Root</div>'
+                    //+ '<ul class="Container">'
+                    //+ '<li class="Node ExpandLeaf">'
+                    //+ '<div class="Expand"></div>'
+                    //+ '<div class="Content">Item 1</div>'
+                    //+ '</li>'
+                    //+ '</ul>'
+                    //+ '</li>'
+                    //+ '</ul>'
+                },
+                error: function()
+                {
+
+                }
+            });
+
+            $.ajax({
+                dataType: "json",
+                url: departURL + code + "/" + filialCode,
+                success: function (data) {
+
+                    selectedEmployees = 0;
+                    $.each(data, function (key, value) {
+                        var CodeId = value.Code.replace(/\./g, "-");
+                        ///---Добавляю пункт структуры
+                        if (value.Type == "dep") {
+                            var menuLevel = "menuLevel" + (value.Level);
+                            $("#menuPool").append("<div class='menuLevel " + menuLevel + "' id='navigation" + CodeId + "'>" + value.Code + " " + value.Name + "</div>");
+                        }
+                        else {
+                            $("#menuPool").append(getUserTemplate(value));
+                            document.getElementById("photo" + value.Code).style.backgroundImage = "url('" + value.PhotoFileName + "')";
+                            document.getElementById("photo" + value.Code).style.backgroundSize = "cover";
+                        }
+
+                        if (value.Type == "dep") {
+                            ///---Прикрепляю ему обработчик для структурных подразделений
+                            $("#navigation" + CodeId).hover(function () {
+                                SelectObject(prefix + CodeId);
+                            }, function () {
+                                UnselectObject(prefix + CodeId);
+                            });
+                        } else {
+                            ///---Прикрепляю ему обработчик для пользователей
+                            $("#userNavigation" + CodeId).hover(function () {
+                                SelectUserWithPreviewUnselect(prefixUser + CodeId);
+                                //SelectUser(prefixUser + CodeId);
+                            }, function () {
+                                UnselectUser(prefixUser + CodeId);
+                            });
+                            $("#userNavigation" + CodeId).click(function () {
+
+                                ///---Отображение информации о пользвателе
+                                //$("#modalDialogBack").css("display", "none");
+                                //$("#viewData").html(GetUserDetailedInfo(CodeId));
+
+                            });
+
+                            ///---Подсчитываю количество
+                            selectedEmployees += 1;
+                            $("#selectedEmployees").html(selectedEmployees);
+                        }
+
+                        if (value.Type == "dep") {
+                            ///---Прикрепляю ему обработчик click
+                            $("#navigation" + CodeId).click(function () {
+                                FillDepartment(CodeId);
+                            });
+                        } else {
+                            ///---Прикрепляю ему обработчик click
+                            $("#navigation" + CodeId).click(function () {
+                                FillDepartment(CodeId);
+                            });
+                        }
+
+                    });
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Заполняет навигационную панель по выбранному пользователю
+        function FillUser(code) {
+            $("#navigationPanel").empty();
+            $("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>" + firstLevelText + "</div>");
+            $("#firstLevel").click(function () {
+                FillStructure();
+            });
+
+            $.ajax({
+                dataType: "json",
+                url: singleuserURL + code,
+                success: function (data) {
+                    ///---Добавляю пользователя в navigationBar
+                    if (data.Type == "user") {
+                        $("#navigationPanel").append(getUserTemplate(data));
+                        document.getElementById("photo" + data.Code).style.backgroundImage = "url('" + data.PhotoFileName + "')";
+                        document.getElementById("photo" + data.Code).style.backgroundSize = "cover";
+                    }
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Заполняет навигационную панель по выбранным пользователям
+        function FillBirthdayUsers() {
+            $("#navigationPanel").empty();
+            //$("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>" + firstLevelText + "</div>");
+            $("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>"
+                + "<img src='/Resources/backicon.png' class='iconmap'>"
+                + firstLevelText + "</div>");
+            $("#navigationPanel").append("<div class='menuPool' id='menuPool' />");
+
+            $("#firstLevel").click(function () {
+                FillStructure();                
+            });
+
+            $.ajax({
+                dataType: "json",
+                url: birthdayURL,
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        var CodeId = value.Code.replace(/\./g, "-");
+
+                        SelectUser(prefixUser + CodeId);
+
+                        ///---Добавляю пользователя в навигационную панель
+                        if (value.Type == "user") {
+                            $("#menuPool").append(getUserTemplate(value));
+                            document.getElementById("photo" + value.Code).style.backgroundImage = "url('" + value.PhotoFileName + "')";
+                            document.getElementById("photo" + value.Code).style.backgroundSize = "cover";
+                        }
+
+                        if (value.Type == "user") {
+                            ///---Прикрепляю ему обработчик для пользователей
+                            $("#userNavigation" + CodeId).hover(function () {
+                                SelectUser(prefixUser + CodeId);
+                            }, function () {
+                                UnselectUser(prefixUser + CodeId);
+                            });
+                        }
+                    });
+
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Заполняет навигационную панель по поиску пользователей
+        function FillSearchUsers(name) {
+            $("#navigationPanel").empty();
+            //$("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>" + firstLevelText + "</div>");
+            $("#navigationPanel").append("<div class='menuLevel1' id='firstLevel'>"
+                + "<img src='/Resources/backicon.png' class='iconmap'>"
+                + firstLevelText + "</div>");
+            $("#navigationPanel").append("<div class='menuPool' id='menuPool' />");
+
+            $("#firstLevel").click(function () {
+                FillStructure();
+            });
+
+            $.ajax({
+                dataType: "json",
+                url: searchURL + name,
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        var CodeId = value.Code.replace(/\./g, "-");
+
+                        //SelectUser(prefixUser + CodeId);
+
+                        ///---Добавляю пользователя в навигационную панель
+                        if (value.Type == "user") {
+                            $("#menuPool").append(getUserTemplate(value));
+                            document.getElementById("photo" + value.Code).style.backgroundImage = "url('" + value.PhotoFileName + "')";
+                            document.getElementById("photo" + value.Code).style.backgroundSize = "cover";
+                        }
+
+                        if (value.Type == "user") {
+                            ///---Прикрепляю ему обработчик для пользователей
+                            if ($("#userNavigation" + CodeId).length > 0)
+                            {
+                                $("#userNavigation" + CodeId).hover(function () {
+                                    SelectUser(prefixUser + CodeId);
+                                }, function () {
+                                    UnselectUser(prefixUser + CodeId);
+                                });
+                            }
+                        }
+                    });
+
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        function GetUserDetailedInfo(CodeId)
+        {
+            var xxx = "";
+            $.ajax({
+                dataType: "json",
+                url: detailedUserInfoURL + CodeId,
+                success: function (data) {
+                    var xxx = data;
+                },
+                error: function (err) {
+                    var x = err;
+                },
+                async: false
+            });
+            var sss = xxx;
+        }
+
+        ///---Заполняет шаблон отображения пользователя
+        function getUserTemplate(value) {
+            var CodeId = value.Code.replace(/\./g, "-");
+
+            var Phones = value.Phones == null
+                ? ""
+                : value.Phones.replace(/\n/g, "|").replace(/\ /g, "|");
+            var PhoneArray = Phones.split("|");
+
+            var Name = value.Name == null ? "" : value.Name.replace(/\n/g, "");
+            var Mobile = value.Mobile == null
+                ? ""
+                : value.Mobile.replace(/\n/g, "|").replace(/\ /g, "|");
+            var MobileArray = Mobile.split("|");
+
+            var Email = value.Email == null ? "" : value.Email.replace(/\n/g, "").replace(/\ /g, "");
+
+            callFrom = callFrom != null? callFrom.replace(/\n/g, ""):"";
+
+            if (Phones == null || Phones == "" || callFrom == "" || callFrom == null)
+            {
+                var PhonesBlock = "";
+                for (i = 0; i < PhoneArray.length; i++) {
+                    if (PhoneArray[i].indexOf("fax") != 0 && PhoneArray[i].replace(/ /g, "") != "") {
+                        PhonesBlock += "<div class='uPhones'>" + PhoneArray[i] + "</div>";
+                    }
+                }
+                var MobilePhonesBlock = "";
+                for (i = 0; i < MobileArray.length; i++) {
+                    if (MobileArray[i].indexOf("fax") != 0 && MobileArray[i].replace(/ /g, "") != "") {
+                        MobilePhonesBlock += "<div class='uPhones'>" + MobileArray[i] + "</div>";
+                    }
+                }
+                return "<div class='menuLevel1' id='userNavigation" + CodeId + "'>"
+                    + "<div class='uPost'>" + value.Post + "</div>"
+                    + "<div id='photo" + value.Code + "' class='img-circle'></div>"
+                    + "<div class='uName'>" + Name + "</div>"
+                    + PhonesBlock
+                    + MobilePhonesBlock
+                    + "<div class='uEmail'><a href='mailto:" + Email + "'>" + Email + "</a></div>"
+                    + "</div>";
+            } else {
+                var PhonesBlock = "";
+                for (i = 0; i < PhoneArray.length; i++)
+                {
+                    if (PhoneArray[i].indexOf("fax") != 0 && PhoneArray[i].replace(/ /g, "") != "")
+                    {
+                        PhonesBlock+="<div class='uPhones'><img src='/Resources/call.png' width='50' onclick=\"CallFromTo(\'" + callFrom
+                        + "\',\'" + PhoneArray[i] + "\')\">" + PhoneArray[i] + "</div>";
+                    }
+                }
+                var MobilePhonesBlock = "";
+                for (i = 0; i < MobileArray.length; i++) {
+                    if (MobileArray[i].indexOf("fax") != 0 && MobileArray[i].replace(/ /g, "") != "") {
+                        MobilePhonesBlock += "<div class='uPhones'>" + MobileArray[i] + "</div>";
+                    }
+                }
+                return "<div class='menuLevel1' id='userNavigation" + CodeId + "'>"
+                    + "<div class='uPost'>" + value.Post + "</div>"
+                    + "<div id='photo" + value.Code + "' class='img-circle'></div>"
+                    + "<div class='uName'>" + Name + "</div>"
+                    + PhonesBlock
+                    + MobilePhonesBlock
+                    + "<div class='uEmail'><a href='mailto:" + Email + "'>" + Email + "</a></div>"
+                    + "</div>";
+            }
+
+            }
+
+        ///---Осуществляет звонок с указанного номера на другой
+        function CallFromTo(from, to)
+        {
+            from = from.replace(/\-/g, "").replace(/\(750\)/g, "").replace(/\ /g, "");
+            to = to.replace(/\-/g, "").replace(/\(750\)/g, "").replace(/\ /g, "");
+            $.ajax({
+                dataType: "json",
+                url: "http://10.112.0.13/calls/?numa="+from+"&dialnum=" + to,
+                success: function (data) {
+                    var x = data;
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        function SelectObject(objectId) {
+            if ($('[id^=' + objectId + '-]').length > 0) {
+                //$("#" + objectId + '-').show();
+
+                //e = document.getElementById(objectId + '-');
+                //e.style.fillOpacity = 0.8;
+            }
+
+            ///---Выделяю все объекты
+            if ($('[id^=' + objectId + '-]').length > 0) {
+                //$('[id^=' + objectId + '-]').style.fillOpacity = 0.8;
+                $('[id^=' + objectId + '-]').each(function (key, value) {
+                    $("#" + value.id).show();
+                    //$("#" + value.id).style.fillOpacity = 0.8;
+                    document.getElementById(value.id).style.fillOpacity = 0.8;
+                    //value.style.fillOpacity = 0.8;
+                });
+            }
+        }
+
+        function UnselectObject(objectId) {
+            if ($('[id^=' + objectId + '-]').length > 0) {
+                //$("#" + objectId + '-').hide();
+
+                //e = document.getElementById(objectId + '-');
+                //e.style.fillOpacity = 0.1;
+                $('[id^=' + objectId + '-]').each(function (key, value) {
+                    value.style.fillOpacity = 0.1;
+                });
+                $('[id^=' + objectId + '-]').hide();
+            }
+
+            ///---Убираю выделение всех объектов
+            if ($('[id^=' + objectId + '-]').length > 0) {
+                $('[id^=' + objectId + '-]').each(function (key, value) {
+                    value.style.fillOpacity = 0.1;
+                });
+            }
+        }
+
+        function SelectUser(objectId) {
+            if ($("#" + objectId).length > 0) {
+                e = document.getElementById(objectId);
+                e.style.fillOpacity = 1;
+                e.style.fill = selectedUserColor;
+
+                DrawMarker(objectId);
+            }
+        }
+
+        function SelectUserWithPreviewUnselect(objectId) {
+            $("[id^=user]").each(function (index, element) {
+                e = document.getElementById(element.id);
+                e.style.fillOpacity = 0;
+                e.style.fill = unselectedUserColor;
+            });
+
+            if ($("#" + objectId).length > 0) {
+                e = document.getElementById(objectId);
+                e.style.fillOpacity = 1;
+                e.style.fill = selectedUserColor;
+
+                DrawMarker(objectId);
+            }
+        }
+
+        function UnselectAllUsers()
+        {
+            $("[id^=user]").each(function (index, element) {
+                e = document.getElementById(element.id);
+                e.style.fillOpacity = 0;
+                e.style.fill = unselectedUserColor;
+            });
+        }
+
+        function UnselectUser(objectId) {
+            if ($("#" + objectId).length > 0) {
+                e = document.getElementById(objectId);
+                e.style.fillOpacity = 0;
+                e.style.fill = unselectedUserColor;
+
+                UndrawMarker(objectId);
+            }
+        }
+
+        ///---Выбираю текущий филиал для отображения
+        function SelectFilial(filialCode)
+        {
+            currentFilia = filialCode;
+            DrawMenuHeader();
+            $('[id^=filialTab]').removeClass("selectedFilia");
+            $('#filialTab' + filialCode).addClass("selectedFilia");
+            FillDepartmentFilial(currentFunction, currentFilia);
+        }
+
+        ///---Для указанного элемента делаю на карте подпись
+        function DrawMarker(objectId2)
+        {
+            var code = objectId2;
+            if (objectId2.indexOf(prefixUser) != -1)
+            {
+                code = objectId2.replace(prefixUser, "");
+            }
+
+            $.ajax({
+                dataType: "json",
+                url: singleuserURL + code,
+                success: function (data) {
+                    if (data.Type == "user") {
+                        var mapForDrawing = SVG.get('svgUTN');
+                        var mediana = window.innerWidth / 2;
+
+                        var tooltip = document.getElementById(objectId2);
+                        var rectCoordinate = tooltip.getBoundingClientRect();
+
+                        $("#detailInfo").html(data.Name);
+                        var d = document.getElementById('detailInfo');
+                        d.style.left = 0;
+                        d.style.top = 0;
+                        var recordWidth = d.getBoundingClientRect().width;
+
+                        var x1 = rectCoordinate.x;
+                        if (x1 > mediana) { x1 = x1 - recordWidth; }                        
+                        d.style.visibility = "visible";
+                        d.style.position = "fixed";
+                        d.style.zIndex = 1050;
+                        d.style.left = x1 + 'px';
+                        d.style.top = (rectCoordinate.y - 30) + 'px';
+                   }
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Убираю все подписи
+        function UndrawMarker(objectId2) {
+            var d = document.getElementById('detailInfo');
+            d.style.visibility = "hidden";
+        }
+
+        ///---Отображает статистику посещения сайта
+        function GetStatistics()
+        {
+            $.ajax({
+                dataType: "json",
+                url: "/api/getStatistics",
+                success: function (data) {
+                    var x1 = "Today Hits/Visitors:" + data.TodayHitCount + "/" + data.TodayVisitors
+                    var x2 = "Total Hits/Visitors:" + +data.TotalHitCount + "/" + data.TotalVisitors;
+                    $("#statisticPanel1").html(x1);
+                    $("#statisticPanel2").html(x2);
+                    $("#statisticPanel").click(function () {
+                        location.href = "/home/phonetasks";
+                    });
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });        
+        }
+
+        function drawCurrentUser()
+        {
+            $.ajax({
+                dataType: "json",
+                url: currentUserURL,
+                success: function (data) {
+                    $("#currentUser").html(data.FIO);
+                    $("#currentEmail").html(data.Email);
+
+                    if (data.Phone != "" && data.Phone != null)
+                    {
+                        $("#currentPhone").html(data.Phone);
+                        //$("#editPanel").hide();
+
+
+                    } else {
+                        //$("#editPanel").show();
+                    }
+
+                    if (data.Phone == null || data.Phone == "" || data.FIO == null || data.FIO == "")
+                    {
+                        $("#editPhone").show();
+                        $("#editPhone").click(function () {
+                            //$("#editPanel").show();
+                            location.href = "/home/changephone";
+                        });
+                    } else {
+                        $("#editPhone").hide();
+                    }
+
+
+                    callFrom = data.Phone;
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        // возвращает cookie с именем name, если есть, если нет, то undefined
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+              "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        function setCookie(name, value, options) {
+            options = options || {};
+
+            var expires = options.expires;
+
+            if (typeof expires == "number" && expires) {
+                var d = new Date();
+                d.setTime(d.getTime() + expires * 1000);
+                expires = options.expires = d;
+            }
+            if (expires && expires.toUTCString) {
+                options.expires = expires.toUTCString();
+            }
+
+            value = encodeURIComponent(value);
+
+            var updatedCookie = name + "=" + value;
+
+            for (var propName in options) {
+                updatedCookie += "; " + propName;
+                var propValue = options[propName];
+                if (propValue !== true) {
+                    updatedCookie += "=" + propValue;
+                }
+            }
+
+            document.cookie = updatedCookie;
+        }
+
+        ///---------------------------------------------------------------------------------------
+        ///----Основной код программы
+        ///---------------------------------------------------------------------------------------
+        document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        $('#svgUTN').load(function () {
+            LoadSVG();
+        });
+
+        ///---Начальные действия при загрузке
+        FillStructure();
+
+        ///---Назначаю обработчики
+        $("#birthDayButton").click(function () {
+            FillBirthdayUsers()
+        });
+        $("#inputSearchText").keyup(function (keycode) {
+            if ($("#inputSearchText").val().length > 3) {
+                var inputText = $("#inputSearchText").val();
+                FillSearchUsers(inputText);
+            } else {
+                FillStructure();
+            }
+        });
+
+        $(document).ready(function () {
+            ///---отображение кнопки ДР в зависимости от наличия именинников
+            $.ajax({
+                dataType: "json",
+                url: birthdayURL,
+                success: function (data) {
+                    if(data.length > 0)
+                    {
+                        $("#birthdayButton").css({ top: 2, left: window.innerWidth - 300, position: 'fixed' });
+                        $("#birthdayButton").css({ backgroundColor: "#f06" });
+                        $("#birthdayButton").html("В нас є іменинники");
+                        $("#birthdayButton").click(function () {
+                            FillBirthdayUsers();
+                        });
+                    } else {
+                        $("#birthdayButton").css({ top: 2, left: window.innerWidth - 300, position: 'fixed' });
+                        $("#birthdayButton").css({ backgroundColor: "#00a380" });
+                        $("#birthdayButton").html("Немає іменинників");
+                    }
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+
+            drawCurrentUser();
+
+            ///--Обработка кнопки сохранение номера телефона в кукисах
+            $("#savePhone").click(function () {
+
+                var r = {};
+                r.Phone = $("#inputPhone").val();
+
+                ///---Проверка на правильность заполненности номера телефона
+                if (/^\(750\)\d\d\-\d\d$/.test(r.Phone))
+                {
+                    $.ajax({
+                        dataType: "json",
+                        url: saveUserURL,
+                        data: r,
+                        type: "POST",
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function (err) {
+                            var x = err;
+                        }
+                    });
+                } else {
+                    alert("Неправильный формат телефона.");
+                }
+            });
+
+            ///--Обработка кнопки закрытия диалогового окна
+            $("#closeDialogButton").click(function () {
+                $("#modalDialogBack").css("display","none");
+            });
+
+            ///--Отображение статистики сайта
+            GetStatistics();
+            
+        });
+
+</script>

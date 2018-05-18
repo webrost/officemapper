@@ -1,0 +1,81 @@
+﻿@model OfficeMapper.Models.InventViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Invent</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/Content/Apps.css" />
+    @*<link rel="stylesheet" href="~/Content/Invent.css" />*@
+        <script src="http://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        <script src="http://www.chartjs.org/dist/2.7.2/Chart.bundle.js"></script>
+        <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+</head>
+<body>
+    <div class="alert-warning">Загальна кількість інвентаризованих комп'ютерів: <span>@Model.TotalComps</span></div>
+    <table class="table table-striped">
+        <thead>
+                <tr class="thead-dark">
+                    <th>#</th>
+                    <th>@Html.ActionLink("Филиал", "Invent", "Apps", new { sortBy = "Filial" }, null)</th>
+                    <th>@Html.ActionLink("Объект", "Invent", "Apps", new { sortBy = "Depart" }, null)</th>
+                    <th>@Html.ActionLink("IP", "Invent", "Apps", new { sortBy = "LastLogonIP" }, null)</th>
+                    <th>@Html.ActionLink("Компьютер", "Invent", "Apps", new { sortBy = "CompName" }, null)</th>
+                    <th>@Html.ActionLink("Username", "Invent", "Apps", new { sortBy = "username" }, null)</th>
+                    <th>@Html.ActionLink("CPU_name", "Invent", "Apps", new { sortBy = "CPU_name" }, null)</th>
+                    <th>@Html.ActionLink("CPU_freq", "Invent", "Apps", new { sortBy = "CPU_freq" }, null)</th>
+                    <th>@Html.ActionLink("OSArch", "Invent", "Apps", new { sortBy = "osarch" }, null)</th>
+                    <th>@Html.ActionLink("OSVersion", "Invent", "Apps", new { sortBy = "OSVersion" }, null)</th>
+                    <th>@Html.ActionLink("RAM", "Invent", "Apps", new { sortBy = "RAM" }, null)</th>
+                    <th>@Html.ActionLink("TotalDriveCount", "Invent", "Apps", new { sortBy = "TotalDriveCount" }, null)</th>
+                    <th>@Html.ActionLink("TotalDriveSize", "Invent", "Apps", new { sortBy = "TotalDriveSize" }, null)</th>
+                    <th>@Html.ActionLink("TotalFreeSize", "Invent", "Apps", new { sortBy = "TotalFreeSize" }, null)</th>
+                    <th>@Html.ActionLink("DriveInterfaces", "Invent", "Apps", new { sortBy = "DriveInterfaces" }, null)</th>
+                    <th>@Html.ActionLink("GPU_NAME", "Invent", "Apps", new { sortBy = "GPU_NAME" }, null)</th>
+                    <th>@Html.ActionLink("GPU_HR", "Invent", "Apps", new { sortBy = "GPU_HR" }, null)</th>
+                    <th>@Html.ActionLink("GPU_VR", "Invent", "Apps", new { sortBy = "GPU_VR" }, null)</th>
+                    <th>@Html.ActionLink("DefaultPrinterName", "Invent", "Apps", new { sortBy = "DefaultPrinterName" }, null)</th>
+                    <th>@Html.ActionLink("MailboxSize", "Invent", "Apps", new { sortBy = "MailboxSize" }, null)</th>
+                    <th>@Html.ActionLink("ProfileSize", "Invent", "Apps", new { sortBy = "ProfileSize" }, null)</th>
+                </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.computers.Count; i++)
+            {
+                <tr>
+                    <td class="filterable-cell">@i</td>
+                    <td class="filterable-cell">@Model.computers[i].Filial</td>
+                    <td class="filterable-cell">@Model.computers[i].Depart</td>
+                    <td class="filterable-cell">@Model.computers[i].LastLogonIP</td>
+                    <td class="filterable-cell">@Model.computers[i].CompName</td>
+                    <td class="filterable-cell">@Model.computers[i].username</td>
+                    <td class="filterable-cell">@Model.computers[i].CPU_name</td>
+                    <td class="filterable-cell">@Model.computers[i].CPU_freq</td>
+                    <td class="filterable-cell">@Model.computers[i].osarch</td>
+                    <td class="filterable-cell">@Model.computers[i].OSVersion</td>
+                    <td class="filterable-cell">@Model.computers[i].RAM</td>
+                    <td class="filterable-cell">@Model.computers[i].TotalDriveCount</td>
+                    <td class="filterable-cell">@Model.computers[i].TotalDriveSize</td>
+                    <td class="filterable-cell">@Model.computers[i].TotalFreeSize</td>
+                    <td class="filterable-cell">@Model.computers[i].DriveInterfaces</td>
+                    <td class="filterable-cell">@Model.computers[i].GPU_NAME</td>
+                    <td class="filterable-cell">@Model.computers[i].GPU_HR</td>
+                    <td class="filterable-cell">@Model.computers[i].GPU_VR</td>
+                    <td class="filterable-cell">@Model.computers[i].DefaultPrinterName</td>
+                    <td class="filterable-cell">@Model.computers[i].MailboxSize</td>
+                    <td class="filterable-cell">@Model.computers[i].ProfileSize</td>
+                    <td class="filterable-cell"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

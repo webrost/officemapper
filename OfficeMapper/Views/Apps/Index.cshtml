@@ -1,0 +1,269 @@
+﻿@model OfficeMapper.Models.ApplicationView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Apps</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/Apps.css" />
+    <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+@if (Model.IsLearningMode)
+{
+    <div class="AppMode">
+        <div class="AppModeLeft">
+            <img src="~/Resources/logo1.png" width="200" />
+            Інвентаризація програмно-апаратних засобів
+        </div>
+        <div class="AppModeRight">
+
+            @*----- Вывожу поле выбора пользователя для редактирвания для обслуживающего персонала -----*@ 
+            @if (Model.User.ITResponsible)
+            {
+                <span>Кого редактировать (ФИО):</span><input type="text" id="searchUser" />
+            }
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var usersURL = "/api/users/";
+                    var currentPosition = 0;
+                    var searchString = "";
+                    var currentUser = "";
+
+                    ///---Если введено больше 3-х символов - запускаю поиск
+                    $("#searchUser").keyup(function (e) {
+
+                        searchString = "";
+
+                        if(e.keyCode == 13)
+                        {
+                            location.href="/Apps/"+currentUser.AccessKey;
+                        }
+
+                        if (document.getElementById("searchUser").selectionStart > 3)
+                        {
+                            if (e.keyCode != 8 && e.keyCode != 46){
+                            searchString = $("#searchUser").val().substring(0, document.getElementById("searchUser").selectionStart);
+                            currentPosition = searchString.length;
+                            $.ajax({
+                                dataType: "json",
+                                url: usersURL + searchString,
+                                success: function (data) {
+                                    $.each(data, function (key, value) {
+                                        var FIO = value.FIO;
+                                        $("#searchUser").val(FIO);
+                                        createSelection(document.getElementById("searchUser"), currentPosition, FIO.length);
+                                        currentUser = value;
+                                    });
+                                },
+                                error: function (err) {
+                                    var x = err;
+                                }
+                            });
+                            }
+                        }
+                    });
+
+                    ///---Выделение остатка текста
+                    function createSelection(field, start, end) {
+                        if (field.createTextRange) {
+                            var selRange = field.createTextRange();
+                            selRange.collapse(true);
+                            selRange.moveStart('character', start);
+                            selRange.moveEnd('character', end);
+                            selRange.select();
+                        } else if (field.setSelectionRange) {
+                            field.setSelectionRange(start, end);
+                        } else if (field.selectionStart) {
+                            field.selectionStart = start;
+                            field.selectionEnd = end;
+                        }
+                        field.focus();
+                    }
+                });
+            </script>
+        </div>
+    </div>
+}
+
+<div class="AppHeader">
+    @Html.Partial("_LoginPartial",Model)
+</div>
+@using (Html.BeginForm("Index", "Apps", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.User.UTNLogin, new { @type = "hidden" })
+    @Html.HiddenFor(m => m.User.domain, new { @type = "hidden" })
+    <table class="table table-sm">
+        <thead>
+            <tr class="thead-dark">
+                <th scope="col">Идентификатор</th>
+                <th scope="col">Заказать</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Предупреждение</th>
+                <th scope="col">Подтверждено IT</th>
+                <th scope="col">Подтвердил со стороны IT</th>
+                <th scope="col">Подтверждено владельцем</th>
+                <th scope="col">Подтвердил со стороны владельца</th>
+                <th scope="col">Invent</th>
+            </tr>
+        </thead>
+        <tbody>
+                @for (var i = 0; i < Model.Applications.Count; i++)
+                {
+                        <tr class="@Model.Applications[i].Type">
+                            <th>
+                                @Model.Applications[i].Id
+                                @Html.HiddenFor(m=>m.Applications[i].Id,new { @type="hidden"})
+                            </th>
+                            <td>
+                                @if (@Model.Applications[i].Type == "Service")
+                                {
+                                    @Html.CheckBoxFor(x => x.Applications[i].UserClamed, new { @class = "form-check" })
+                                }                                
+                            </td>
+                            <td>
+                                <a class="ServiceNameText" href="@Model.Applications[i].HelpDocumentationLink">@Html.DisplayFor(m=>m.Applications[i].Name)</a>                            
+                            </td>
+                            <td>@Model.Applications[i].Description</td>
+                            <td style="color:#ff0000;font-weight:bold">@Model.Applications[i].DeprecationText</td>
+                            <td>
+                                @if (@Model.Applications[i].Type == "Service")
+                                {
+                                    @Html.CheckBoxFor(x => x.Applications[i].AcceptedIT, new { @class = "form-check", @disabled = "disabled" })
+                                }
+                            </td>
+                            <td>
+                                @if(Model.Applications[i].AcceptedITBy != null)
+                                {
+                                    @Model.Applications[i].AcceptedITBy.UTNLogin
+                                }                                
+                            </td>
+                            <td>
+                                @if (Model.Applications[i].NeedAcceptedOwner)
+                                {
+                                    @Html.CheckBoxFor(x => x.Applications[i].AcceptedOwner, new { @class = "form-check", @disabled = "disabled" })
+                                }                            
+                            </td>
+                            <td>
+                                @if (Model.Applications[i].NeedAcceptedOwner && Model.Applications[i].AcceptedOwnerBy != null)
+                                {
+                                    @Model.Applications[i].AcceptedOwnerBy.UTNLogin
+                                }                                
+                            </td>
+                            <td>
+                                @if (Model.Applications[i].AcceptedTechnicalResponsible)
+                                {
+                                    @Html.CheckBoxFor(x => x.Applications[i].AcceptedTechnicalResponsible, new { @class = "form-check", @disabled = "disabled" })
+                                }
+                            </td>
+                        </tr>
+                    }
+        </tbody>
+    </table>
+
+    if (!Model.IsLearningMode)
+    {
+        <div>
+            <div class="AppMode">Доступ до даних</div>
+            <table class="table table-sm">
+                <thead>
+                    <tr class="thead-dark">
+                        <th scope="col">Запит на читання</th>
+                        <th scope="col">Запит на запис</th>
+                        <th scope="col">Шлях</th>
+                        <th scope="col">Власники</th>
+                        <th scope="col">Підтверджено з боку власника</th>
+                        <th scope="col">Підтвердив з боку власника</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.FileShares != null)
+                    {
+                        for (var i = 0; i < Model.FileShares.Count; i++)
+                        {
+                            <tr class="">
+                                <th>
+                                    @Html.CheckBoxFor(x => x.FileShares[i].AllowRead, new { @class = "form-check" })
+                                </th>
+                                <td>
+                                    @Html.CheckBoxFor(x => x.FileShares[i].AllowWrite, new { @class = "form-check" })
+                                </td>
+                                <td>
+                                    <a class="ServiceNameText" href="@Model.FileShares[i].Path">@Html.DisplayFor(m => m.FileShares[i].Path)</a>
+                                </td>
+                                <td>
+                                    @if (Model.FileShares[i].Owners != null)
+                            {
+                                foreach (string owner in Model.FileShares[i].Owners)
+                                {
+                                            <div>
+                                                @owner
+                                            </div>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @if (@Model.FileShares[i].AcceptedOwner != null && @Model.FileShares[i].AcceptedOwner != DateTime.MinValue)
+                            {
+                                        @Model.FileShares[i].AcceptedOwner.ToString("dd.MM.yyyy HH:mm");
+                            }
+                                </td>
+                                <td>
+                                    @Model.FileShares[i].AcceeptedOwnerBy;
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    }
+    else { 
+        <div class="well"><h2>
+    Якщи ви не знайшли вашого додатку в переліку, але він вам необхідний для виконання посадових обов'язків,
+    додайте його найменування, та опис (для яких цілей використовується) в таблиці нижче.
+</h2>
+        </div>
+        <table class="table table-sm">
+            <thead>
+                <tr class="thead-dark">
+                    <th scope="col">Найменування додатку</th>
+                    <th scope="col">Опис (для якіх цілей використовується)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.NewApplications.Count; i++)
+                {
+                    <tr >
+                        <td style="width:20%">
+                            @Html.EditorFor(m => m.NewApplications[i].Name, new { @class = "EditorClass" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(x => x.NewApplications[i].Description, new { style = "width:100%" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-info" style="width:50%" />
+        </div>
+    </div>
+}
+</body>
+</html>

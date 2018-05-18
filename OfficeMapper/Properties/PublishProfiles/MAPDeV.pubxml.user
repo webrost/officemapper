@@ -1,0 +1,1186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\inetpub\mapdev</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>11/30/2017 10:58:46</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>02/22/2013 08:43:40</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>02/22/2013 08:43:40</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>11/30/2017 10:58:46</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>05/08/2018 13:27:19</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>05/08/2018 13:27:19</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>05/02/2018 16:19:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>12/07/2015 19:04:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>03/10/2016 14:26:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>03/09/2016 12:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>03/09/2016 11:57:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/03/2015 18:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/03/2015 18:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>04/03/2015 18:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2015 03:06:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>02/13/2015 13:16:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>02/13/2015 13:16:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>02/13/2015 13:16:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>02/13/2015 13:16:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>02/13/2015 13:16:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>02/13/2015 13:16:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>02/13/2015 13:16:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>02/13/2015 13:16:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>02/13/2015 13:16:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/23/2012 16:23:58</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/24/2018 17:44:14</publishTime>
+    </File>
+    <File Include="bin/Ninject.dll">
+      <publishTime>11/13/2017 03:01:30</publishTime>
+    </File>
+    <File Include="bin/NPOI.dll">
+      <publishTime>03/06/2013 06:17:46</publishTime>
+    </File>
+    <File Include="bin/NPOI.OOXML.dll">
+      <publishTime>03/06/2013 06:17:50</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXml4Net.dll">
+      <publishTime>03/06/2013 06:17:48</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXmlFormats.dll">
+      <publishTime>03/06/2013 06:17:48</publishTime>
+    </File>
+    <File Include="bin/OfficeMapper.dll">
+      <publishTime>05/08/2018 13:27:00</publishTime>
+    </File>
+    <File Include="bin/OfficeMapper.pdb">
+      <publishTime>04/03/2018 08:57:34</publishTime>
+    </File>
+    <File Include="bin/OpenPop.dll">
+      <publishTime>11/21/2015 16:45:00</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/27/2012 13:00:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/18/2015 21:19:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/18/2015 21:19:46</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/28/2015 04:02:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/28/2015 04:02:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 04:03:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 04:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 04:02:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/Trinet.Core.IO.Ntfs.dll">
+      <publishTime>09/14/2016 18:42:14</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>09/10/2013 18:28:38</publishTime>
+    </File>
+    <File Include="Content/Apps.css">
+      <publishTime>03/30/2018 09:35:52</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="Content/Invent.css">
+      <publishTime>04/05/2018 11:42:17</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>05/07/2018 17:53:51</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>03/02/2018 12:06:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/30/2017 10:58:03</publishTime>
+    </File>
+    <File Include="Lib/ApproveMessageTemplate.html">
+      <publishTime>01/30/2018 14:07:36</publishTime>
+    </File>
+    <File Include="Lib/DeclineMessageTemplate.html">
+      <publishTime>01/30/2018 15:29:00</publishTime>
+    </File>
+    <File Include="Lib/ServiceDeskRequestTemplate.html">
+      <publishTime>01/27/2018 17:45:09</publishTime>
+    </File>
+    <File Include="Lib/TechApproveMessageTemplate.html">
+      <publishTime>01/31/2018 17:46:23</publishTime>
+    </File>
+    <File Include="Models/Phones.dbml">
+      <publishTime>05/07/2018 13:32:06</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>05/02/2018 15:52:23</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>05/08/2018 13:27:07</publishTime>
+    </File>
+    <File Include="Resources/a.boiko.JPG">
+      <publishTime>03/27/2018 11:44:38</publishTime>
+    </File>
+    <File Include="Resources/a.golovach.JPG">
+      <publishTime>02/01/2016 09:13:36</publishTime>
+    </File>
+    <File Include="Resources/aglushchenko.JPG">
+      <publishTime>03/20/2009 09:14:24</publishTime>
+    </File>
+    <File Include="Resources/alpatov.JPG">
+      <publishTime>04/02/2018 14:06:58</publishTime>
+    </File>
+    <File Include="Resources/anisimov.JPG">
+      <publishTime>03/10/2010 12:51:04</publishTime>
+    </File>
+    <File Include="Resources/anisimova.JPG">
+      <publishTime>08/02/2016 17:05:58</publishTime>
+    </File>
+    <File Include="Resources/ap.jpg">
+      <publishTime>05/03/2017 12:41:30</publishTime>
+    </File>
+    <File Include="Resources/atrakhimenok.JPG">
+      <publishTime>02/09/2016 10:37:48</publishTime>
+    </File>
+    <File Include="Resources/babych.JPG">
+      <publishTime>09/04/2017 10:21:32</publishTime>
+    </File>
+    <File Include="Resources/backicon.png">
+      <publishTime>03/28/2018 16:20:42</publishTime>
+    </File>
+    <File Include="Resources/bazilenko.JPG">
+      <publishTime>09/06/2006 10:09:42</publishTime>
+    </File>
+    <File Include="Resources/bd.png">
+      <publishTime>01/23/2018 11:28:09</publishTime>
+    </File>
+    <File Include="Resources/beskorovainyi.JPG">
+      <publishTime>01/25/2017 08:37:12</publishTime>
+    </File>
+    <File Include="Resources/bezlyudna.JPG">
+      <publishTime>03/26/2009 15:32:36</publishTime>
+    </File>
+    <File Include="Resources/bielkanova.JPG">
+      <publishTime>08/19/2017 09:41:32</publishTime>
+    </File>
+    <File Include="Resources/bilous.JPG">
+      <publishTime>10/11/2016 09:38:40</publishTime>
+    </File>
+    <File Include="Resources/bilovytskyi.JPG">
+      <publishTime>02/01/2018 15:16:42</publishTime>
+    </File>
+    <File Include="Resources/blazhko.JPG">
+      <publishTime>02/01/2017 09:46:36</publishTime>
+    </File>
+    <File Include="Resources/bliznyuk.JPG">
+      <publishTime>06/24/2016 13:24:20</publishTime>
+    </File>
+    <File Include="Resources/boiko.JPG">
+      <publishTime>10/18/2017 15:39:10</publishTime>
+    </File>
+    <File Include="Resources/bondarchuk.JPG">
+      <publishTime>02/02/2018 11:51:56</publishTime>
+    </File>
+    <File Include="Resources/bondarenko.JPG">
+      <publishTime>08/01/2016 11:53:58</publishTime>
+    </File>
+    <File Include="Resources/borodienko.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/brovchenko.JPG">
+      <publishTime>01/31/2018 12:00:20</publishTime>
+    </File>
+    <File Include="Resources/burtan.JPG">
+      <publishTime>03/18/2009 10:27:38</publishTime>
+    </File>
+    <File Include="Resources/call.jpg">
+      <publishTime>02/09/2018 13:53:59</publishTime>
+    </File>
+    <File Include="Resources/call.png">
+      <publishTime>02/09/2018 14:00:45</publishTime>
+    </File>
+    <File Include="Resources/chastokolyan.JPG">
+      <publishTime>12/04/2006 15:42:16</publishTime>
+    </File>
+    <File Include="Resources/chayka.JPG">
+      <publishTime>04/19/2017 10:03:18</publishTime>
+    </File>
+    <File Include="Resources/chechel.JPG">
+      <publishTime>02/02/2018 09:16:14</publishTime>
+    </File>
+    <File Include="Resources/chekunova.JPG">
+      <publishTime>02/02/2018 14:47:16</publishTime>
+    </File>
+    <File Include="Resources/cherednichenko.jpg">
+      <publishTime>02/16/2006 08:45:58</publishTime>
+    </File>
+    <File Include="Resources/cherneha.JPG">
+      <publishTime>08/01/2016 07:58:44</publishTime>
+    </File>
+    <File Include="Resources/cherniukh.JPG">
+      <publishTime>09/06/2017 10:16:46</publishTime>
+    </File>
+    <File Include="Resources/chernyak.JPG">
+      <publishTime>01/24/2018 11:23:44</publishTime>
+    </File>
+    <File Include="Resources/chizhyk.JPG">
+      <publishTime>02/11/2009 14:24:02</publishTime>
+    </File>
+    <File Include="Resources/chuzha.JPG">
+      <publishTime>05/17/2017 10:37:32</publishTime>
+    </File>
+    <File Include="Resources/danylkovych.JPG">
+      <publishTime>02/02/2018 15:12:52</publishTime>
+    </File>
+    <File Include="Resources/demchenkova.JPG">
+      <publishTime>11/03/2017 11:02:22</publishTime>
+    </File>
+    <File Include="Resources/deyneka.JPG">
+      <publishTime>05/15/2017 17:29:32</publishTime>
+    </File>
+    <File Include="Resources/dmytriiev.JPG">
+      <publishTime>02/01/2018 15:07:46</publishTime>
+    </File>
+    <File Include="Resources/dolia.JPG">
+      <publishTime>09/04/2017 11:48:54</publishTime>
+    </File>
+    <File Include="Resources/donenko.JPG">
+      <publishTime>09/16/2015 10:30:02</publishTime>
+    </File>
+    <File Include="Resources/doroshenko.JPG">
+      <publishTime>08/06/2008 10:11:22</publishTime>
+    </File>
+    <File Include="Resources/dotsenko.JPG">
+      <publishTime>09/06/2006 09:13:14</publishTime>
+    </File>
+    <File Include="Resources/dr_bembel.JPG">
+      <publishTime>02/08/2010 09:05:00</publishTime>
+    </File>
+    <File Include="Resources/dr_gerashchenko.JPG">
+      <publishTime>09/06/2006 11:24:54</publishTime>
+    </File>
+    <File Include="Resources/dr_homych.JPG">
+      <publishTime>02/08/2010 09:10:06</publishTime>
+    </File>
+    <File Include="Resources/dr_koba.JPG">
+      <publishTime>08/26/2016 11:57:48</publishTime>
+    </File>
+    <File Include="Resources/dr_koval.JPG">
+      <publishTime>09/06/2006 11:21:48</publishTime>
+    </File>
+    <File Include="Resources/dr_kruhlii.JPG">
+      <publishTime>02/01/2017 09:18:40</publishTime>
+    </File>
+    <File Include="Resources/dr_mochulianskyi.JPG">
+      <publishTime>04/10/2009 14:19:20</publishTime>
+    </File>
+    <File Include="Resources/dr_ponomarenko.JPG">
+      <publishTime>03/25/2009 13:06:28</publishTime>
+    </File>
+    <File Include="Resources/dr_prorochenko.JPG">
+      <publishTime>12/22/2015 08:37:22</publishTime>
+    </File>
+    <File Include="Resources/dr_rydenko.jpg">
+      <publishTime>02/05/2010 14:38:12</publishTime>
+    </File>
+    <File Include="Resources/dr_shishkin.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/dr_sobachko.jpg">
+      <publishTime>11/07/2008 08:25:30</publishTime>
+    </File>
+    <File Include="Resources/dr_sorokin.JPG">
+      <publishTime>04/06/2017 11:33:52</publishTime>
+    </File>
+    <File Include="Resources/dr_teslyuk.JPG">
+      <publishTime>08/31/2006 11:13:22</publishTime>
+    </File>
+    <File Include="Resources/dr_verbylo.jpg">
+      <publishTime>02/14/2012 14:55:26</publishTime>
+    </File>
+    <File Include="Resources/dr_zaretskyi.JPG">
+      <publishTime>07/07/2011 13:37:54</publishTime>
+    </File>
+    <File Include="Resources/dunin.JPG">
+      <publishTime>06/09/2009 10:46:50</publishTime>
+    </File>
+    <File Include="Resources/dw.png">
+      <publishTime>02/08/2018 17:40:35</publishTime>
+    </File>
+    <File Include="Resources/e.shevchenko.JPG">
+      <publishTime>10/18/2017 11:09:26</publishTime>
+    </File>
+    <File Include="Resources/emchuk.jpg">
+      <publishTime>08/17/2011 09:13:54</publishTime>
+    </File>
+    <File Include="Resources/enaiv.jpg">
+      <publishTime>09/13/2007 10:25:46</publishTime>
+    </File>
+    <File Include="Resources/fedchenko.JPG">
+      <publishTime>01/20/2017 14:33:16</publishTime>
+    </File>
+    <File Include="Resources/fedorets.JPG">
+      <publishTime>03/24/2009 12:09:40</publishTime>
+    </File>
+    <File Include="Resources/filonchuk.JPG">
+      <publishTime>01/13/2015 11:57:28</publishTime>
+    </File>
+    <File Include="Resources/galich.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/garmash.jpg">
+      <publishTime>02/02/2018 11:55:48</publishTime>
+    </File>
+    <File Include="Resources/gayday.jpg">
+      <publishTime>04/17/2007 12:37:52</publishTime>
+    </File>
+    <File Include="Resources/gerasimenko.jpg">
+      <publishTime>11/28/2011 12:42:32</publishTime>
+    </File>
+    <File Include="Resources/gluhenka.JPG">
+      <publishTime>02/09/2009 13:20:40</publishTime>
+    </File>
+    <File Include="Resources/glushchenko.JPG">
+      <publishTime>08/17/2006 08:54:12</publishTime>
+    </File>
+    <File Include="Resources/glushchenko.oksana.jpg">
+      <publishTime>09/05/2007 09:42:30</publishTime>
+    </File>
+    <File Include="Resources/godovanets.JPG">
+      <publishTime>09/06/2006 08:18:10</publishTime>
+    </File>
+    <File Include="Resources/golenko.JPG">
+      <publishTime>04/02/2018 14:12:56</publishTime>
+    </File>
+    <File Include="Resources/gomeniuk.JPG">
+      <publishTime>04/02/2018 14:05:26</publishTime>
+    </File>
+    <File Include="Resources/gordeyeva.JPG">
+      <publishTime>12/19/2006 15:35:28</publishTime>
+    </File>
+    <File Include="Resources/gorpin.JPG">
+      <publishTime>02/10/2009 16:35:40</publishTime>
+    </File>
+    <File Include="Resources/grantovsky.JPG">
+      <publishTime>02/28/2018 11:25:13</publishTime>
+    </File>
+    <File Include="Resources/grigor.jpg">
+      <publishTime>04/01/2008 16:22:34</publishTime>
+    </File>
+    <File Include="Resources/gruzdev.JPG">
+      <publishTime>08/17/2006 08:43:00</publishTime>
+    </File>
+    <File Include="Resources/grytsenko.JPG">
+      <publishTime>07/01/2016 13:17:40</publishTime>
+    </File>
+    <File Include="Resources/gutsulyak.JPG">
+      <publishTime>09/06/2006 09:56:14</publishTime>
+    </File>
+    <File Include="Resources/havrylenko.jpg">
+      <publishTime>12/07/2017 01:42:25</publishTime>
+    </File>
+    <File Include="Resources/havryliuk.JPG">
+      <publishTime>09/09/2016 13:20:36</publishTime>
+    </File>
+    <File Include="Resources/hnatyuk.JPG">
+      <publishTime>04/17/2007 12:47:22</publishTime>
+    </File>
+    <File Include="Resources/homenko.JPG">
+      <publishTime>02/26/2009 15:17:36</publishTime>
+    </File>
+    <File Include="Resources/iemchuk.JPG">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/ivasenko.JPG">
+      <publishTime>02/12/2009 14:13:02</publishTime>
+    </File>
+    <File Include="Resources/ivonina.jpg">
+      <publishTime>02/02/2018 10:53:18</publishTime>
+    </File>
+    <File Include="Resources/ivonyak.JPG">
+      <publishTime>08/17/2006 08:37:36</publishTime>
+    </File>
+    <File Include="Resources/izhyvora.JPG">
+      <publishTime>10/23/2015 10:34:44</publishTime>
+    </File>
+    <File Include="Resources/kalashnik.jpg">
+      <publishTime>03/20/2008 10:20:16</publishTime>
+    </File>
+    <File Include="Resources/kasian.JPG">
+      <publishTime>05/22/2015 11:53:10</publishTime>
+    </File>
+    <File Include="Resources/kasyan.JPG">
+      <publishTime>12/26/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Resources/khmelnitskaya.JPG">
+      <publishTime>11/20/2017 11:04:48</publishTime>
+    </File>
+    <File Include="Resources/khotsyanivskyy.JPG">
+      <publishTime>04/02/2018 14:11:38</publishTime>
+    </File>
+    <File Include="Resources/klimenko.JPG">
+      <publishTime>01/05/2016 09:31:30</publishTime>
+    </File>
+    <File Include="Resources/klymchenko.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/klymenko.JPG">
+      <publishTime>05/24/2012 10:40:58</publishTime>
+    </File>
+    <File Include="Resources/kolesnik.JPG">
+      <publishTime>05/20/2015 14:12:44</publishTime>
+    </File>
+    <File Include="Resources/kolomiets.jpg">
+      <publishTime>01/28/2011 10:14:10</publishTime>
+    </File>
+    <File Include="Resources/konovalchuk.JPG">
+      <publishTime>03/14/2018 16:22:32</publishTime>
+    </File>
+    <File Include="Resources/korkushko.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/kornev.JPG">
+      <publishTime>04/01/2009 10:06:30</publishTime>
+    </File>
+    <File Include="Resources/korneva.JPG">
+      <publishTime>11/29/2017 09:50:42</publishTime>
+    </File>
+    <File Include="Resources/korzhevska.JPG">
+      <publishTime>04/03/2018 16:59:16</publishTime>
+    </File>
+    <File Include="Resources/kosenko.JPG">
+      <publishTime>10/02/2017 15:04:18</publishTime>
+    </File>
+    <File Include="Resources/kost.JPG">
+      <publishTime>05/22/2015 09:27:34</publishTime>
+    </File>
+    <File Include="Resources/kosygina.JPG">
+      <publishTime>03/15/2018 11:09:40</publishTime>
+    </File>
+    <File Include="Resources/koval.JPG">
+      <publishTime>07/04/2006 10:53:58</publishTime>
+    </File>
+    <File Include="Resources/kovalenko.JPG">
+      <publishTime>09/06/2006 10:15:44</publishTime>
+    </File>
+    <File Include="Resources/kozlov.jpg">
+      <publishTime>02/16/2011 10:40:04</publishTime>
+    </File>
+    <File Include="Resources/kozlova.JPG">
+      <publishTime>02/02/2018 14:49:38</publishTime>
+    </File>
+    <File Include="Resources/krasnokutska.JPG">
+      <publishTime>08/17/2006 09:51:14</publishTime>
+    </File>
+    <File Include="Resources/kravchenko.JPG">
+      <publishTime>03/19/2009 07:34:00</publishTime>
+    </File>
+    <File Include="Resources/kravchenkoa.jpg">
+      <publishTime>02/06/2008 13:53:14</publishTime>
+    </File>
+    <File Include="Resources/krutskykh.JPG">
+      <publishTime>03/21/2006 12:25:02</publishTime>
+    </File>
+    <File Include="Resources/kryvko.JPG">
+      <publishTime>02/05/2018 09:50:22</publishTime>
+    </File>
+    <File Include="Resources/kryvulya.JPG">
+      <publishTime>02/02/2018 10:37:20</publishTime>
+    </File>
+    <File Include="Resources/kukhar.jpg">
+      <publishTime>04/10/2008 13:58:44</publishTime>
+    </File>
+    <File Include="Resources/kushnir.JPG">
+      <publishTime>03/22/2011 11:57:08</publishTime>
+    </File>
+    <File Include="Resources/kvach.JPG">
+      <publishTime>12/16/2015 09:33:32</publishTime>
+    </File>
+    <File Include="Resources/laschuk.JPG">
+      <publishTime>04/14/2009 09:43:30</publishTime>
+    </File>
+    <File Include="Resources/lehkyi.JPG">
+      <publishTime>03/12/2018 15:23:32</publishTime>
+    </File>
+    <File Include="Resources/levchenko.JPG">
+      <publishTime>03/14/2018 16:20:52</publishTime>
+    </File>
+    <File Include="Resources/levin.JPG">
+      <publishTime>06/01/2016 09:56:02</publishTime>
+    </File>
+    <File Include="Resources/leykovskiy.JPG">
+      <publishTime>11/09/2016 11:37:44</publishTime>
+    </File>
+    <File Include="Resources/liedovska.jpg">
+      <publishTime>07/11/2016 20:32:14</publishTime>
+    </File>
+    <File Include="Resources/limanskiy.JPG">
+      <publishTime>06/10/2015 10:30:16</publishTime>
+    </File>
+    <File Include="Resources/lisova.JPG">
+      <publishTime>08/17/2006 10:11:08</publishTime>
+    </File>
+    <File Include="Resources/litvinchuk.JPG">
+      <publishTime>02/24/2010 14:29:50</publishTime>
+    </File>
+    <File Include="Resources/logo1.png">
+      <publishTime>02/01/2018 15:08:42</publishTime>
+    </File>
+    <File Include="Resources/lyasota.JPG">
+      <publishTime>08/15/2016 11:57:04</publishTime>
+    </File>
+    <File Include="Resources/lysak.jpg">
+      <publishTime>03/06/2006 09:10:22</publishTime>
+    </File>
+    <File Include="Resources/lytkina.jpg">
+      <publishTime>03/05/2018 16:31:56</publishTime>
+    </File>
+    <File Include="Resources/lytvynenko.JPG">
+      <publishTime>12/26/2016 08:34:04</publishTime>
+    </File>
+    <File Include="Resources/lyubar.JPG">
+      <publishTime>02/02/2018 10:49:08</publishTime>
+    </File>
+    <File Include="Resources/maksimenko.JPG">
+      <publishTime>09/06/2006 10:29:18</publishTime>
+    </File>
+    <File Include="Resources/malina.jpg">
+      <publishTime>03/28/2006 08:18:48</publishTime>
+    </File>
+    <File Include="Resources/manko.JPG">
+      <publishTime>10/18/2017 11:16:26</publishTime>
+    </File>
+    <File Include="Resources/marchenko.jpg">
+      <publishTime>03/06/2006 10:12:36</publishTime>
+    </File>
+    <File Include="Resources/marinokha.JPG">
+      <publishTime>09/10/2015 12:27:48</publishTime>
+    </File>
+    <File Include="Resources/marshalok.JPG">
+      <publishTime>04/14/2017 10:52:30</publishTime>
+    </File>
+    <File Include="Resources/martynenko.JPG">
+      <publishTime>08/09/2011 09:37:18</publishTime>
+    </File>
+    <File Include="Resources/matviiuk.JPG">
+      <publishTime>03/14/2018 16:30:00</publishTime>
+    </File>
+    <File Include="Resources/medvetskyi.JPG">
+      <publishTime>05/14/2015 09:09:32</publishTime>
+    </File>
+    <File Include="Resources/melenivska.JPG">
+      <publishTime>04/03/2018 16:00:23</publishTime>
+    </File>
+    <File Include="Resources/melezhyk.JPG">
+      <publishTime>08/22/2016 10:39:56</publishTime>
+    </File>
+    <File Include="Resources/mendel.jpg">
+      <publishTime>06/15/2011 15:48:56</publishTime>
+    </File>
+    <File Include="Resources/miakushko.JPG">
+      <publishTime>03/14/2018 16:25:16</publishTime>
+    </File>
+    <File Include="Resources/mihailik.JPG">
+      <publishTime>06/23/2005 16:18:26</publishTime>
+    </File>
+    <File Include="Resources/mihalevskaya.jpg">
+      <publishTime>05/22/2015 15:12:02</publishTime>
+    </File>
+    <File Include="Resources/mikhalyo.JPG">
+      <publishTime>01/04/2016 11:24:34</publishTime>
+    </File>
+    <File Include="Resources/miroshnychenko.JPG">
+      <publishTime>11/15/2016 08:56:56</publishTime>
+    </File>
+    <File Include="Resources/mosenzhnyk.JPG">
+      <publishTime>06/03/2016 10:55:20</publishTime>
+    </File>
+    <File Include="Resources/mostapenko.jpg">
+      <publishTime>09/21/2011 08:47:46</publishTime>
+    </File>
+    <File Include="Resources/muzharovskyi.JPG">
+      <publishTime>07/04/2013 16:03:08</publishTime>
+    </File>
+    <File Include="Resources/naydyon.JPG">
+      <publishTime>08/17/2006 08:43:56</publishTime>
+    </File>
+    <File Include="Resources/nikolaeva.JPG">
+      <publishTime>09/16/2014 12:40:38</publishTime>
+    </File>
+    <File Include="Resources/nkozak.JPG">
+      <publishTime>12/16/2015 09:05:32</publishTime>
+    </File>
+    <File Include="Resources/novak.jpg">
+      <publishTime>11/04/2008 08:24:24</publishTime>
+    </File>
+    <File Include="Resources/novitskyi.JPG">
+      <publishTime>11/01/2016 08:43:42</publishTime>
+    </File>
+    <File Include="Resources/nsinegub.jpg">
+      <publishTime>05/25/2007 11:07:40</publishTime>
+    </File>
+    <File Include="Resources/okost.JPG">
+      <publishTime>02/13/2017 08:30:36</publishTime>
+    </File>
+    <File Include="Resources/oleynykov.JPG">
+      <publishTime>08/15/2016 12:14:16</publishTime>
+    </File>
+    <File Include="Resources/ostapenko.JPG">
+      <publishTime>12/18/2017 10:07:56</publishTime>
+    </File>
+    <File Include="Resources/p.yurchenko.JPG">
+      <publishTime>01/27/2017 10:11:16</publishTime>
+    </File>
+    <File Include="Resources/pazynich.JPG">
+      <publishTime>09/20/2017 09:14:26</publishTime>
+    </File>
+    <File Include="Resources/petryshyn.JPG">
+      <publishTime>12/20/2016 12:31:20</publishTime>
+    </File>
+    <File Include="Resources/phones.xlsx">
+      <publishTime>04/03/2018 16:31:36</publishTime>
+    </File>
+    <File Include="Resources/piata.JPG">
+      <publishTime>09/07/2016 09:19:52</publishTime>
+    </File>
+    <File Include="Resources/podolyakns.jpg">
+      <publishTime>02/02/2018 12:01:54</publishTime>
+    </File>
+    <File Include="Resources/pogodaeva.JPG">
+      <publishTime>04/02/2018 14:14:14</publishTime>
+    </File>
+    <File Include="Resources/pogorelov.JPG">
+      <publishTime>02/26/2009 14:09:02</publishTime>
+    </File>
+    <File Include="Resources/polovets.JPG">
+      <publishTime>09/12/2017 15:29:34</publishTime>
+    </File>
+    <File Include="Resources/polozhay.JPG">
+      <publishTime>11/01/2017 10:49:38</publishTime>
+    </File>
+    <File Include="Resources/ponomar.JPG">
+      <publishTime>06/21/2016 14:21:58</publishTime>
+    </File>
+    <File Include="Resources/ponomaryova.JPG">
+      <publishTime>04/03/2018 15:37:59</publishTime>
+    </File>
+    <File Include="Resources/poznyakova.JPG">
+      <publishTime>02/12/2009 12:17:34</publishTime>
+    </File>
+    <File Include="Resources/prokopchuk.JPG">
+      <publishTime>01/19/2016 09:04:16</publishTime>
+    </File>
+    <File Include="Resources/prylypko.JPG">
+      <publishTime>08/17/2006 08:55:30</publishTime>
+    </File>
+    <File Include="Resources/radchenko.JPG">
+      <publishTime>01/30/2017 10:33:26</publishTime>
+    </File>
+    <File Include="Resources/radetsky.jpg">
+      <publishTime>04/01/2008 16:27:16</publishTime>
+    </File>
+    <File Include="Resources/raksha.JPG">
+      <publishTime>06/01/2016 09:21:54</publishTime>
+    </File>
+    <File Include="Resources/rasputna.JPG">
+      <publishTime>09/06/2006 10:38:06</publishTime>
+    </File>
+    <File Include="Resources/romanenko.JPG">
+      <publishTime>03/15/2018 11:11:04</publishTime>
+    </File>
+    <File Include="Resources/romashko.JPG">
+      <publishTime>09/06/2006 09:49:34</publishTime>
+    </File>
+    <File Include="Resources/roskoliy.JPG">
+      <publishTime>09/13/2011 11:18:54</publishTime>
+    </File>
+    <File Include="Resources/ruban.JPG">
+      <publishTime>12/16/2015 18:38:02</publishTime>
+    </File>
+    <File Include="Resources/rudkov.JPG">
+      <publishTime>01/23/2018 12:23:38</publishTime>
+    </File>
+    <File Include="Resources/rybaruk.JPG">
+      <publishTime>01/10/2018 09:47:00</publishTime>
+    </File>
+    <File Include="Resources/ryzha.JPG">
+      <publishTime>01/29/2018 10:32:26</publishTime>
+    </File>
+    <File Include="Resources/salko.JPG">
+      <publishTime>04/17/2009 11:08:26</publishTime>
+    </File>
+    <File Include="Resources/salmina.jpg">
+      <publishTime>12/26/2007 10:29:40</publishTime>
+    </File>
+    <File Include="Resources/savenko.JPG">
+      <publishTime>06/11/2015 09:39:44</publishTime>
+    </File>
+    <File Include="Resources/schepin.JPG">
+      <publishTime>06/05/2014 10:07:40</publishTime>
+    </File>
+    <File Include="Resources/senator.pdf">
+      <publishTime>02/08/2018 14:28:47</publishTime>
+    </File>
+    <File Include="Resources/senator.svg">
+      <publishTime>04/03/2018 16:49:44</publishTime>
+    </File>
+    <File Include="Resources/senator2.svg">
+      <publishTime>12/21/2017 18:09:25</publishTime>
+    </File>
+    <File Include="Resources/senator3.svg">
+      <publishTime>01/02/2018 16:16:21</publishTime>
+    </File>
+    <File Include="Resources/severin.JPG">
+      <publishTime>01/04/2016 10:52:20</publishTime>
+    </File>
+    <File Include="Resources/shevchenko.JPG">
+      <publishTime>09/06/2006 10:54:04</publishTime>
+    </File>
+    <File Include="Resources/shevchuk.JPG">
+      <publishTime>10/19/2012 09:10:38</publishTime>
+    </File>
+    <File Include="Resources/shevcova.JPG">
+      <publishTime>10/08/2009 10:54:22</publishTime>
+    </File>
+    <File Include="Resources/shirmanov.JPG">
+      <publishTime>10/21/2009 14:08:06</publishTime>
+    </File>
+    <File Include="Resources/shubko.JPG">
+      <publishTime>01/16/2016 09:46:10</publishTime>
+    </File>
+    <File Include="Resources/shulyar.JPG">
+      <publishTime>02/09/2010 11:55:36</publishTime>
+    </File>
+    <File Include="Resources/shvets.JPG">
+      <publishTime>01/23/2018 11:43:32</publishTime>
+    </File>
+    <File Include="Resources/sidelov.JPG">
+      <publishTime>02/11/2009 12:58:56</publishTime>
+    </File>
+    <File Include="Resources/singaevskiy.JPG">
+      <publishTime>05/28/2015 09:49:44</publishTime>
+    </File>
+    <File Include="Resources/sklyarevska.JPG">
+      <publishTime>02/12/2009 11:05:36</publishTime>
+    </File>
+    <File Include="Resources/sliepanov.JPG">
+      <publishTime>11/01/2016 09:45:46</publishTime>
+    </File>
+    <File Include="Resources/solodarenko.JPG">
+      <publishTime>11/10/2006 09:59:40</publishTime>
+    </File>
+    <File Include="Resources/sshipka.JPG">
+      <publishTime>01/25/2018 14:24:58</publishTime>
+    </File>
+    <File Include="Resources/stakhiv.JPG">
+      <publishTime>02/01/2017 13:37:06</publishTime>
+    </File>
+    <File Include="Resources/stepanenko.JPG">
+      <publishTime>09/02/2015 11:08:14</publishTime>
+    </File>
+    <File Include="Resources/stryzhak.JPG">
+      <publishTime>03/22/2018 10:11:52</publishTime>
+    </File>
+    <File Include="Resources/studzinskyi.JPG">
+      <publishTime>02/01/2018 15:18:00</publishTime>
+    </File>
+    <File Include="Resources/stulska.JPG">
+      <publishTime>06/13/2017 10:34:44</publishTime>
+    </File>
+    <File Include="Resources/sychova.JPG">
+      <publishTime>02/02/2018 15:35:24</publishTime>
+    </File>
+    <File Include="Resources/sydorenko.JPG">
+      <publishTime>06/13/2016 11:42:02</publishTime>
+    </File>
+    <File Include="Resources/symets.JPG">
+      <publishTime>03/18/2009 15:30:22</publishTime>
+    </File>
+    <File Include="Resources/symetslg.jpg">
+      <publishTime>11/08/2007 08:32:50</publishTime>
+    </File>
+    <File Include="Resources/symonov.JPG">
+      <publishTime>12/25/2006 13:59:48</publishTime>
+    </File>
+    <File Include="Resources/syomkaylo.JPG">
+      <publishTime>08/17/2006 09:01:40</publishTime>
+    </File>
+    <File Include="Resources/tarasova.JPG">
+      <publishTime>03/25/2009 10:59:24</publishTime>
+    </File>
+    <File Include="Resources/tekucheva.JPG">
+      <publishTime>02/02/2018 10:51:24</publishTime>
+    </File>
+    <File Include="Resources/teodorovich.JPG">
+      <publishTime>06/07/2017 16:07:20</publishTime>
+    </File>
+    <File Include="Resources/Thumbs.db">
+      <publishTime>04/03/2018 16:59:52</publishTime>
+    </File>
+    <File Include="Resources/tkachenko.jpg">
+      <publishTime>01/05/2016 09:42:32</publishTime>
+    </File>
+    <File Include="Resources/tkachov.JPG">
+      <publishTime>01/04/2018 10:30:06</publishTime>
+    </File>
+    <File Include="Resources/tocheniyk.JPG">
+      <publishTime>02/01/2018 15:24:52</publishTime>
+    </File>
+    <File Include="Resources/tregubenko.JPG">
+      <publishTime>01/20/2016 11:30:44</publishTime>
+    </File>
+    <File Include="Resources/trempolets.JPG">
+      <publishTime>10/29/2015 10:15:28</publishTime>
+    </File>
+    <File Include="Resources/trygolov.JPG">
+      <publishTime>08/17/2016 12:05:16</publishTime>
+    </File>
+    <File Include="Resources/tshevchenko.JPG">
+      <publishTime>02/01/2018 15:28:22</publishTime>
+    </File>
+    <File Include="Resources/ulshina.JPG">
+      <publishTime>03/20/2009 10:30:42</publishTime>
+    </File>
+    <File Include="Resources/vasiytovych.JPG">
+      <publishTime>08/30/2016 08:50:12</publishTime>
+    </File>
+    <File Include="Resources/vaskivska.JPG">
+      <publishTime>03/18/2009 10:13:22</publishTime>
+    </File>
+    <File Include="Resources/voloshanyuk.JPG">
+      <publishTime>03/23/2009 11:32:36</publishTime>
+    </File>
+    <File Include="Resources/yakimenko.JPG">
+      <publishTime>08/14/2009 11:16:52</publishTime>
+    </File>
+    <File Include="Resources/yakovenko.JPG">
+      <publishTime>09/02/2016 10:15:24</publishTime>
+    </File>
+    <File Include="Resources/yakovleva.JPG">
+      <publishTime>08/17/2006 08:48:54</publishTime>
+    </File>
+    <File Include="Resources/yarmolenko.JPG">
+      <publishTime>08/17/2006 09:06:58</publishTime>
+    </File>
+    <File Include="Resources/yurkevych.JPG">
+      <publishTime>06/17/2010 10:24:50</publishTime>
+    </File>
+    <File Include="Resources/yuschenko.JPG">
+      <publishTime>08/21/2017 09:19:10</publishTime>
+    </File>
+    <File Include="Resources/zaburuyeva.JPG">
+      <publishTime>10/23/2017 10:40:46</publishTime>
+    </File>
+    <File Include="Resources/zakuta.jpg">
+      <publishTime>01/12/2016 13:37:06</publishTime>
+    </File>
+    <File Include="Resources/zamula.JPG">
+      <publishTime>06/29/2016 15:21:04</publishTime>
+    </File>
+    <File Include="Resources/zavadska.JPG">
+      <publishTime>11/20/2017 10:59:28</publishTime>
+    </File>
+    <File Include="Resources/zhuravel.JPG">
+      <publishTime>02/02/2018 11:15:50</publishTime>
+    </File>
+    <File Include="Resources/zinkovets.JPG">
+      <publishTime>11/09/2016 10:35:56</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.js">
+      <publishTime>11/30/2017 10:58:47</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>11/30/2017 10:58:47</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>11/30/2017 10:58:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>11/30/2017 10:58:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>11/30/2017 10:58:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>11/30/2017 10:58:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>11/30/2017 10:58:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>11/30/2017 10:58:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>11/30/2017 10:58:19</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/30/2017 10:58:19</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>11/30/2017 10:58:16</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>11/30/2017 10:58:18</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>11/30/2017 10:58:18</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>11/30/2017 10:58:47</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginFailure.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPassword.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>02/12/2018 16:30:09</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPassword.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/SendCode.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/VerifyCode.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Apps/ImportAD.cshtml">
+      <publishTime>01/30/2018 18:40:52</publishTime>
+    </File>
+    <File Include="Views/Apps/Index.cshtml">
+      <publishTime>03/30/2018 09:48:19</publishTime>
+    </File>
+    <File Include="Views/Apps/Invent.cshtml">
+      <publishTime>04/05/2018 12:07:10</publishTime>
+    </File>
+    <File Include="Views/Apps/OnlineUsers.cshtml">
+      <publishTime>03/28/2018 10:36:57</publishTime>
+    </File>
+    <File Include="Views/Apps/Shares.cshtml">
+      <publishTime>02/26/2018 17:04:52</publishTime>
+    </File>
+    <File Include="Views/Apps/Users.cshtml">
+      <publishTime>01/30/2018 17:23:24</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>11/30/2017 10:58:03</publishTime>
+    </File>
+    <File Include="Views/Home/ChangePhone.cshtml">
+      <publishTime>03/06/2018 14:46:30</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>11/30/2017 10:58:03</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>05/08/2018 10:41:45</publishTime>
+    </File>
+    <File Include="Views/Home/Index2.cshtml">
+      <publishTime>03/05/2018 16:55:33</publishTime>
+    </File>
+    <File Include="Views/Home/PhoneTasks.cshtml">
+      <publishTime>05/08/2018 10:48:57</publishTime>
+    </File>
+    <File Include="Views/Manage/AddPhoneNumber.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Manage/ChangePassword.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Manage/Index.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Manage/ManageLogins.cshtml">
+      <publishTime>11/30/2017 10:58:23</publishTime>
+    </File>
+    <File Include="Views/Manage/SetPassword.cshtml">
+      <publishTime>11/30/2017 10:58:23</publishTime>
+    </File>
+    <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
+      <publishTime>11/30/2017 10:58:23</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>11/30/2017 10:58:22</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>11/30/2017 10:58:23</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>03/21/2018 12:19:58</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>02/02/2018 17:02:05</publishTime>
+    </File>
+    <File Include="Views/Tasks/Index.cshtml">
+      <publishTime>05/08/2018 10:51:09</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>11/30/2017 10:58:03</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/30/2017 10:58:03</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/08/2018 13:27:04</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

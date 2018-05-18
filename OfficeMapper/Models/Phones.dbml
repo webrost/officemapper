@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Phones" Class="PhonesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=sql3.ukrtransnafta.com;Initial Catalog=Phones;User ID=officemapper;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PhonesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UserServices" Member="UserServices">
+    <Type Name="UserService">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Group]" Member="Group" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ServiceName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TechnicalResponsible" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ServiceCustomer" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ITApproving" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OwnerApproving" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="InstallDocumentationLink" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HelpDocumentationLink" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DeprecationText" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="UserService_RequestTicket" Member="RequestTickets" ThisKey="Id" OtherKey="serviceId" Type="RequestTicket" />
+      <Association Name="UserService_AssignedService1" Member="AssignedService1s" ThisKey="Id" OtherKey="ServiceId" Type="AssignedService1" />
+      <Association Name="UserService_AssignedService" Member="AssignedServices" ThisKey="Id" OtherKey="ServiceId" Type="AssignedService" />
+      <Association Name="UserService_Acceptor" Member="Acceptors" ThisKey="Id" OtherKey="serviceId" Type="Acceptor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReadedMailMessages" Member="ReadedMailMessages">
+    <Type Name="ReadedMailMessage">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="uid" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActionLog" Member="ActionLogs">
+    <Type Name="ActionLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="actionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="actionBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="serviceId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="actionName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Phones" Member="Phones">
+    <Type Name="Phone">
+      <Column Name="Code" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Dep" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Post" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PIB" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Phone" Member="Phone1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="F6" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CityPhone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Function]" Member="Function" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NewServices" Member="NewServices">
+    <Type Name="NewService">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Login" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FileShareAccess" Member="FileShareAccesses">
+    <Type Name="FileShareAccess">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileSharesId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="samAccountName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="AllowRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AllowWrite" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AcceptedOwner" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AcceptedOwnerBy" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Requested" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FileShare_FileShareAccess" Member="FileShare" ThisKey="FileSharesId" OtherKey="Id" Type="FileShare" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FileShareOwners" Member="FileShareOwners">
+    <Type Name="FileShareOwner">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FileShareId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="samAccountName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="FileShare_FileShareOwner" Member="FileShare" ThisKey="FileShareId" OtherKey="Id" Type="FileShare" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FileShares" Member="FileShares">
+    <Type Name="FileShare">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="InformationClass" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="NewDomain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="FileShare_FileShareAccess" Member="FileShareAccesses" ThisKey="Id" OtherKey="FileSharesId" Type="FileShareAccess" />
+      <Association Name="FileShare_FileShareOwner" Member="FileShareOwners" ThisKey="Id" OtherKey="FileShareId" Type="FileShareOwner" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChangePhoneLog" Member="ChangePhoneLogs">
+    <Type Name="ChangePhoneLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventLog" Member="EventLogs">
+    <Type Name="EventLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EventType" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RequestTickets" Member="RequestTickets">
+    <Type Name="RequestTicket">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="serviceId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="secret" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ServiceType" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RequestDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UTNLogin" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="RequestStage" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="sAMAccountName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="UserService_RequestTicket" Member="UserService" ThisKey="serviceId" OtherKey="Id" Type="UserService" IsForeignKey="true" />
+      <Association Name="User_RequestTicket" Member="User" ThisKey="UTNLogin" OtherKey="UTNLogin" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UTNLogin" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FIO" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Post" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Domain" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="FunctionalDepartment" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="AccessKey" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AccessKeyCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_RequestTicket" Member="RequestTickets" ThisKey="UTNLogin" OtherKey="UTNLogin" Type="RequestTicket" />
+      <Association Name="User_AssignedService" Member="AssignedServices" ThisKey="UTNLogin" OtherKey="UTNLogin" Type="AssignedService" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssignedService" Member="AssignedService1s">
+    <Type Name="AssignedService1">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ITApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ITApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OwnerApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OwnerApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserClaimed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TechnicalResponsibleApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TechnicalResponsibleApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UTNLogin" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="UserService_AssignedService1" Member="UserService" ThisKey="ServiceId" OtherKey="Id" Type="UserService" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AssignedService" Member="AssignedServices">
+    <Type Name="AssignedService">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ITApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ITApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OwnerApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OwnerApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserClaimed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TechnicalResponsibleApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TechnicalResponsibleApprovedBy" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UTNLogin" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="User_AssignedService" Member="User" ThisKey="UTNLogin" OtherKey="UTNLogin" Type="User" IsForeignKey="true" />
+      <Association Name="UserService_AssignedService" Member="UserService" ThisKey="ServiceId" OtherKey="Id" Type="UserService" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LogSiteAccess" Member="LogSiteAccesses">
+    <Type Name="LogSiteAccess">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="URI" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Acceptors" Member="Acceptors">
+    <Type Name="Acceptor">
+      <Column Name="serviceId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="poolname" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="acceptSequense" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="serviceDomain" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="UserService_Acceptor" Member="UserService" ThisKey="serviceId" OtherKey="Id" Type="UserService" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Networks" Member="Networks">
+    <Type Name="Network">
+      <Column Name="network" Member="network1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="department" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="filial" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Printers" Member="Printers">
+    <Type Name="Printer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="[Default]" Member="Default" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Network" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Server" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ShareName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="Login_Printer" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DiskDrives" Member="DiskDrives">
+    <Type Name="DiskDrive">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Interface" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Size" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DiskDrive_LogicalDisk" Member="LogicalDisks" ThisKey="Id" OtherKey="DriveId" Type="LogicalDisk" />
+      <Association Name="Login_DiskDrive" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LogicalDisks" Member="LogicalDisks">
+    <Type Name="LogicalDisk">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Free" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Size" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriveId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DiskDrive_LogicalDisk" Member="DiskDrive" ThisKey="DriveId" OtherKey="Id" Type="DiskDrive" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mail" Member="Mails">
+    <Type Name="Mail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lable" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="eml" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dbx" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Login_Mail" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Logins" Member="Logins">
+    <Type Name="Login">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sAMAccountName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IPAddress" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OsVersion" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Post" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="FIO" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="DameWare" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="osarch" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CPU_name" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GPU_NAME" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="errors" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CPU_freq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GPU_RAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GPU_HR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GPU_VR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CompName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="TotalHDDSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalFreeSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriveCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DriveInterfaces" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DefaultPrinterName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="MailBoxSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProfileSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProfileName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="TotalMailSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Login_Printer" Member="Printers" ThisKey="Id" OtherKey="LoginId" Type="Printer" />
+      <Association Name="Login_DiskDrive" Member="DiskDrives" ThisKey="Id" OtherKey="LoginId" Type="DiskDrive" />
+      <Association Name="Login_Mail" Member="Mails" ThisKey="Id" OtherKey="LoginId" Type="Mail" />
+      <Association Name="Login_UserFile" Member="UserFiles" ThisKey="Id" OtherKey="LoginId" Type="UserFile" />
+      <Association Name="Login_UserProgram" Member="UserPrograms" ThisKey="Id" OtherKey="LoginId" Type="UserProgram" />
+      <Association Name="Login_OdinC" Member="OdinCs" ThisKey="Id" OtherKey="LoginId" Type="OdinC" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserFiles" Member="UserFiles">
+    <Type Name="UserFile">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Lable" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Ext" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Size" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Login_UserFile" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserPrograms" Member="UserPrograms">
+    <Type Name="UserProgram">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="Login_UserProgram" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhonesDruzhba" Member="PhonesDruzhbas">
+    <Type Name="PhonesDruzhba">
+      <Column Name="Code" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Dep" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Post" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PIB" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="F6" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CityPhone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[Function]" Member="Function" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AllowMobileCall" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Фото" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="F14" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FromFile" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ObjectName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ExcelRowNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyObjects" Member="CompanyObjects">
+    <Type Name="CompanyObject">
+      <Column Name="ObjName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Filial" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OdinC" Member="OdinCs">
+    <Type Name="OdinC">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Info" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="Login_OdinC" Member="Login" ThisKey="LoginId" OtherKey="Id" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ImportPhones" Method="ImportPhones">
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

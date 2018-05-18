@@ -1,0 +1,339 @@
+﻿@model OfficeMapper.Models.OnlineUsersViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OnlineUsers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/Apps.css" />
+    <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+    <script src="http://www.chartjs.org/dist/2.7.2/Chart.bundle.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+</head>
+<body>
+    <div class="well">
+        Пользователей в сети <b>@Model.users.Count</b>
+        <div class="currentUser" id="currentUser"></div>
+        <div class="phoneNumber" id="currentEmail"></div>
+        <div class="phoneNumber" id="currentPhone"></div>
+    </div>
+    <div id="canvas-holder" style="width:20%;display:inline-block">
+        <h3>Компьютеры в старых доменах</h3>
+        <canvas id="chart-area"></canvas>
+    </div>
+    <div id="canvas-holder" style="width:20%;display:inline-block">
+        <h3>Старый/новый домен</h3>
+        <canvas id="chart-newdomain"></canvas>
+    </div>
+    <div id="canvas-holder" style="width:20%;display:inline-block">
+        <h3>Операционные системы</h3>
+        <canvas id="chart-os"></canvas>
+    </div>
+    <div id="canvas-holder" style="width:20%;display:inline-block">
+        <h3>Уникальных пользователей за 2 месяца <span id="totalUserCount"></span></h3>
+        <canvas id="chart-unique"></canvas>
+    </div>
+    <script>
+		window.onload = function () {
+
+            ///----Запрос на сервер и отображение данных
+		    $.ajax({
+		        dataType: "json",
+		        type: "GET",
+		        url: "/api/data/userbydomain",
+		        success: function (data) {
+		            var config1 = GetConfig(data);
+		            var ctx = document.getElementById('chart-area').getContext('2d');
+		            window.myPie = new Chart(ctx, config1);
+		        },
+		        error: function (err) {
+		            var x = err;
+		        }
+		    });
+
+		    ///----Запрос на данные по новому/старому домену
+		    $.ajax({
+		        dataType: "json",
+		        type: "GET",
+		        url: "/api/data/newdomain",
+		        success: function (data) {
+		            var config1 = GetConfig(data);
+		            var ctx = document.getElementById('chart-newdomain').getContext('2d');
+		            window.myPie = new Chart(ctx, config1);
+		        },
+		        error: function (err) {
+		            var x = err;
+		        }
+		    });
+
+		    ///----Запрос на данные по операционным системам
+		    $.ajax({
+		        dataType: "json",
+		        type: "GET",
+		        url: "/api/data/os",
+		        success: function (data) {
+		            var config1 = GetConfig(data);
+		            var ctx = document.getElementById('chart-os').getContext('2d');
+		            window.myPie = new Chart(ctx, config1);
+		        },
+		        error: function (err) {
+		            var x = err;
+		        }
+		    });
+
+		    ///----Запрос на уникальных пользователей за 2 месяца
+		    $.ajax({
+		        dataType: "json",
+		        type: "GET",
+		        url: "/api/data/uniqueUsersPerMonth",
+		        success: function (data) {
+		            var config1 = GetConfig(data);
+		            var ctx = document.getElementById('chart-unique').getContext('2d');
+		            window.myPie = new Chart(ctx, config1);
+
+		            var totalUserCount = 0;
+		            $.each(data, function (key, value) {
+		                totalUserCount += value.count;
+		            });
+		            $("#totalUserCount").html(totalUserCount);                    
+		        },
+		        error: function (err) {
+		            var x = err;
+		        }
+		    });
+		};
+
+        ///--------------------------------------------
+        ///---Возвращает сконфигурированные набор данных для чартов
+        ///--------------------------------------------
+		function GetConfig(data)
+		{
+		    var preConfColor = [
+                window.chartColors.red,
+                window.chartColors.orange,
+                window.chartColors.blue,
+                window.chartColors.green,
+                window.chartColors.grey,
+                window.chartColors.purple,
+                window.chartColors.yellow
+		    ];
+
+		    var config = {
+		        type: 'pie',
+		        data: {
+		            datasets: [{
+		                data: [1, 1],
+		                backgroundColor: [
+
+		                ],
+		                label: 'Dataset 1'
+		            }],
+		            labels: ["", ""]
+		        },
+		        options: {
+		            responsive: true
+		        }
+		    };
+		    var data1 = [];
+		    var labels1 = [];
+		    var colors1 = [];
+
+		    $.each(data, function (key, value) {
+		        data1.push(value.count);
+		        labels1.push(value.domain);
+		        colors1.push(preConfColor[key % 6])
+		    });
+		    config.data.datasets[0].data = data1;
+		    config.data.datasets[0].backgroundColor = colors1;
+		    config.data.labels = labels1;
+
+		    return config;
+		}
+
+		var colorNames = Object.keys(window.chartColors);
+
+    </script>
+
+
+
+    <div id="ServersWindow">
+        <div class="table-responsive">
+            <table class="table" id="oldServers">
+
+            </table>
+        </div>
+        <div class="btn btn-warning" onclick="CloseTip()">Закрыть</div>
+    </div>
+    <script type="text/javascript" >
+
+        var searchURL = "/api/getUserServers";
+        var tcpURL = "/api/remoteControlAvailable";
+        var currentUserURL = "/api/getCurrentUser";
+        var callFrom = "";
+
+        $("#ServersWindow").hide();
+        drawCurrentUser();
+
+        ///---Возвращает все сервера/компьютеры входа по данному пользователю
+        function GetServers(username, domain) {
+            $("#ServersWindow").show();
+            $("#oldServers").empty();
+            $("#oldServers").append("<tr class='ipaddress'><td>Адрес входа</td><td>Время входа</td><td></td><td>Connection</td></tr>");
+
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                data: { username: username , domain:domain},
+                url: searchURL,
+                success: function (data) {
+                    $.each(data, function (key, value) {
+                        $("#oldServers").append("<tr><td>" + value.ServerIP + "</td><td>"
+                            + value.LogonDate + "</td><td>"
+                            + value.OSVersion + "</td><td>"
+                            + "<div class='btn btn-success' onclick='CopyConnectionStringToClipboard(\"" + value.ServerIP + "\")' id='connectButton" + value.ServerIP.replace(/\./g, '') + key + "'>Copy</div>" + "</td></tr>");
+                        remoteControlAvailable('connectButton' + value.ServerIP.replace(/\./g, '') + key, value.ServerIP);
+                    });
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        //---Копирует строку подключения через DW в буфер обмена
+        function CopyConnectionStringToClipboard(ip)
+        {
+            if (!$("#InputForCopy").length )
+            {
+                $("#oldServers").append("<input type='text' id='InputForCopy' style='display:hidden' />");
+            }            
+            //document.getElementById("InputForCopy").value = "\"C:\\Program Files\\DameWare Remote Support 9.0\\DWRCC.exe\" -c: -h: -m:" + ip + " -a:1";
+            document.getElementById("InputForCopy").value = "\"C:\\Program Files (x86)\\SolarWinds\\DameWare Remote Support\\DWRCC.exe\" -c: -h: -m:" + ip + " -a:1";
+            
+            document.getElementById("InputForCopy").select();
+            document.execCommand("Copy");
+            $("#InputForCopy").hide();
+        }
+
+        //---Посылает с сервера SYN пакет на порт DW 6129
+        function remoteControlAvailable(elemId, ip) {
+
+            $("#"+elemId).hide();
+
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                data: {ServerIP: ip},
+                url: tcpURL,
+                success: function (data) {
+                    if(data)
+                    {
+                        $("#" + elemId).show();
+                    }
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Закрывает подробное окно с пользователями
+        function CloseTip()
+        {
+            $("#ServersWindow").hide();
+        }
+
+        ///---Отображает текущего пользователя
+        function drawCurrentUser() {
+            $.ajax({
+                dataType: "json",
+                url: currentUserURL,
+                success: function (data) {
+                    $("#currentUser").html(data.FIO);
+                    $("#currentEmail").html(data.Email);
+                    $("#currentPhone").html(data.Phone);
+                    callFrom = data.Phone;
+                },
+                error: function (err) {
+                    var x = err;
+                }
+            });
+        }
+
+        ///---Осуществляет звонок пользователю
+        function callTo(to)
+        {
+            if(callFrom != null && callFrom != "")
+            {
+                from = callFrom.replace(/\-/g, "").replace(/\(750\)/g, "").replace(/\(/g, "").replace(/\)/g, "").replace(/\ /g, "");
+                to = to.replace(/\-/g, "").replace(/\(750\)/g, "").replace(/\(/g, "").replace(/\)/g, "").replace(/\ /g, "");
+                $.ajax({
+                    dataType: "json",
+                    url: "http://10.112.0.13/calls/?numa="+from+"&dialnum=" + to,
+                    success: function (data) {
+                        var x = data;
+                    },
+                    error: function (err) {
+                        var x = err;
+                    }
+                });
+            }
+        }
+    </script>
+
+        <table class="table table-sm">
+            <thead>
+                <tr class="thead-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">@Html.ActionLink("Логин", "OnlineUsers", "Apps", new { sortBy = "login" }, null)</th>
+                    <th scope="col">@Html.ActionLink("IP", "OnlineUsers", "Apps", new { sortBy = "ip" }, null)</th>
+                    <th scope="col">@Html.ActionLink("Время входа", "OnlineUsers", "Apps", new { sortBy = "date" }, null)</th>
+                    <th scope="col">@Html.ActionLink("ФИО", "OnlineUsers", "Apps", new { sortBy = "FIO" }, null)</th>
+                    <th scope="col">@Html.ActionLink("Должность", "OnlineUsers", "Apps", new { sortBy = "post" }, null)</th>
+                    <th scope="col">@Html.ActionLink("Email", "OnlineUsers", "Apps", new { sortBy = "email" }, null)</th>
+                    <th scope="col">Версия ОС</th>
+                    <th scope="col">Нефтянка</th>
+                    <th scope="col">Мобильный</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.users.Count; i++)
+            {
+                    <tr>
+                        <td>@i</td>
+                        <td>@Model.users[i].Login</td>
+                        <td><div class="ipaddress" id=@("ipaddress"+i) onclick="GetServers('@Model.users[i].username','@Model.users[i].domain')">@Model.users[i].LastLogonIP</div></td>
+                        <td>@Model.users[i].LastLogon</td>
+                        <td style="color:#000;font-weight:bold">
+                            @if(Model.users[i].DameWare)
+                            {
+                                <img src="~/Resources/dw.png" width="30"/>
+                            }
+                            @Model.users[i].FIO
+                        </td>
+                        <td>@Model.users[i].Post</td>
+                        <td>@Model.users[i].Email</td>
+                        <td>@Model.users[i].OSVersion</td>
+                        <td>
+                            @if (Model.users[i].Phone != "")
+                            {
+                                <img src="~/Resources/call.png" width="40" class="pointerClass" onclick="callTo('@Model.users[i].Phone')"/>
+                                @Model.users[i].Phone
+                            }                        
+                        </td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>

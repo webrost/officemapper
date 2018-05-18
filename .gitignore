@@ -1,0 +1,7 @@
+*.mdf
+*.ldf
+*.config
+/OfficeMapper/App_Data/*
+/OfficeMapper/bin/*
+/OfficeMapper/obj/*
+/packages/*

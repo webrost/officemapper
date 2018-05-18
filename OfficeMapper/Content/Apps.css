@@ -1,0 +1,88 @@
+﻿
+.Group
+{
+    background-color:#00a380;
+    color:#fff;
+    font-size:large;
+}
+.AppHeader
+{
+    background-color:#00a380;
+    color:#fff;
+    font-size:x-large;
+    text-align:right;
+}
+
+.AppMode
+{
+    background-color:#00a380;
+    color:#fff;
+    font-size:xx-large;
+    font-weight:bold;
+    text-align:left;
+}
+.AppModeLeft
+{
+    display:inline-block;
+    text-align:left;
+}
+.AppModeRight
+{
+    display:inline-block;
+    text-align:right;
+}
+
+.ipaddress {
+    background-color:#00a380;
+    color:#fff;
+    text-align:center;
+    cursor:pointer;
+}
+
+#ServersWindow
+{
+    display:block;
+    position:fixed;
+    width: 700px;
+    background-color:#fff;
+    border-width:1px;
+    border-style:solid;
+    border-color:#00a380;
+    border-radius:5px;
+    z-index:999;
+}
+
+.pointerClass{
+    cursor:pointer;
+}
+
+.UTNBackStyle
+{
+        background-color:#00a380;
+}
+
+.currentUser
+{
+    display:inline-block;
+}
+.phoneNumber
+{
+    display:inline-block;
+}
+
+.ServiceNameText
+{
+    font-weight:bold;
+    
+}
+
+.ServiceDescriptionText
+{
+    color:#333333;
+    
+}
+
+.text-box.single-line
+{
+    width:100%;
+}

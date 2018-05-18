@@ -1,0 +1,53 @@
+﻿@model OfficeMapper.Models.ApplicationView
+<div>
+    <div class="AppMode">Доступ до даних</div>
+    <table class="table table-sm">
+        <thead>
+            <tr class="thead-dark">
+                <th scope="col">Запит на читання</th>
+                <th scope="col">Запит на запис</th>
+                <th scope="col">Шлях</th>
+                <th scope="col">Власники</th>
+                <th scope="col">Підтверджено з боку власника</th>
+                <th scope="col">Підтвердив з боку власника</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.FileShares.Count; i++)
+            {
+                <tr class="">
+                    <th>
+                        @Html.CheckBoxFor(x => x.FileShares[i].AllowRead, new { @class = "form-check" })
+                    </th>
+                    <td>
+                        @Html.CheckBoxFor(x => x.FileShares[i].AllowWrite, new { @class = "form-check" })
+                    </td>
+                    <td>
+                        <a class="ServiceNameText" href="@Model.FileShares[i].Path">@Html.DisplayFor(m => m.FileShares[i].Path)</a>
+                    </td>
+                    <td>
+                        @if (Model.FileShares[i].Owners != null)
+                        {
+                            foreach (string owner in Model.FileShares[i].Owners)
+                            {
+                                <div>
+                                    @owner
+                                </div>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @if (@Model.FileShares[i].AcceptedOwner != null && @Model.FileShares[i].AcceptedOwner != DateTime.MinValue)
+                        {
+                            @Model.FileShares[i].AcceptedOwner.ToString("dd.MM.yyyy HH:mm");
+                        }
+                    </td>
+                    <td>
+                            @Model.FileShares[i].AcceeptedOwnerBy;
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
